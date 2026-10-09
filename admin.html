@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریت پیام‌های آرتام</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+        body { font-family: 'Vazirmatn', sans-serif; background: #07070d; color: #fff; padding: 20px; max-width: 800px; margin: 0 auto; }
+        h1 { color: #00e676; text-align: center; margin-bottom: 20px; }
+        .card { background: #0f0f1a; border: 1px solid #7c5cfc; padding: 20px; border-radius: 12px; margin-bottom: 15px; }
+        .header { display: flex; justify-content: space-between; color: #888; font-size: 0.85rem; border-bottom: 1px solid #222; padding-bottom: 8px; margin-bottom: 10px; }
+        .msg-text { font-size: 1rem; margin-bottom: 15px; line-height: 1.6; }
+        textarea { width: 100%; padding: 10px; background: #000; color: #00e676; border: 1px solid #333; border-radius: 8px; font-family: inherit; margin-bottom: 10px; }
+        .btns { display: flex; gap: 10px; }
+        button { padding: 8px 15px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-family: inherit; }
+        .btn-reply { background: #00e676; color: #000; }
+        .btn-delete { background: #ff4444; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <h1>🔐 پنل پاسخ‌دهی آرتام</h1>
+    <div id="container">در حال بارگذاری پیام‌ها...</div>
+
+    <script>
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_tickets";
+        const ADMIN_PASS = "123123آرتام آر آر آر آرت";
+
+        // بررسی رمز هنگام ورود
+        window.onload = function() {
+            let pass = prompt("رمز ورود مدیر را وارد کنید:");
+            if(pass !== ADMIN_PASS) {
+                alert("❌ رمز اشتباه است!");
+                document.body.innerHTML = "<h2 style='color:red; text-align:center;'>دسترسی مسدود شد!</h2>";
+            } else {
+                loadAdminTickets();
+            }
+        };
+
+        async function loadAdminTickets() {
+            let container = document.getElementById('container');
+            try {
+                let res = await fetch(DB_URL);
+                let tickets = res.ok ? await res.json() : [];
+
+                if(tickets.length === 0) {
+                    container.innerHTML = "<p style='text-align:center; color:#666;'>هیچ پیامی نیست.</p>";
+                    return;
+                }
+
+                container.innerHTML = "";
+                tickets.forEach((item, index) => {
+                    container.innerHTML += `
+                        <div class="card">
+                            <div class="header">
+                                <span>👤 ${item.name} (${item.type})</span>
+                                <span>📅 ${item.date}</span>
+                            </div>
+                            <div class="msg-text">📝 ${item.msg}</div>
+                            
+                            <textarea id="reply-${index}" rows="2" placeholder="پاسخ خود را اینجا بنویسید...">${item.reply || ''}</textarea>
+                            
+                            <div class="btns">
+                                <button class="btn-reply" onclick="saveReply(${index})">💾 ثبت / ویرایش پاسخ</button>
+                                <button class="btn-delete" onclick="deleteTicket(${index})">🗑️ حذف پیام</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch(e) {
+                container.innerHTML = "<p style='color:red;'>خطا در لود پیام‌ها.</p>";
+            }
+        }
+
+        async function saveReply(index) {
+            let replyText = document.getElementById(`reply-${index}`).value;
+            let res = await fetch(DB_URL);
+            let tickets = await res.json();
+
+            tickets[index].reply = replyText;
+
+            await fetch(DB_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tickets)
+            });
+
+            alert("✅ پاسخ ثبت شد!");
+            loadAdminTickets();
+        }
+
+        async function deleteTicket(index) {
+            if(!confirm("آیا از حذف این پیام مطمئن هستید؟")) return;
+
+            let res = await fetch(DB_URL);
+            let tickets = await res.json();
+
+            tickets.splice(index, 1);
+
+            await fetch(DB_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tickets)
+            });
+
+            alert("🗑️ پیام حذف شد!");
+            loadAdminTickets();
+        }
+    </script>
+</body>
+</html>
