@@ -37,7 +37,7 @@
         body { font-family: 'Vazirmatn', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.8; transition: 0.4s; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
-        /* تم سوئیچر */
+        /* سوئیچر تم‌ها */
         .theme-switcher { position: fixed; bottom: 25px; left: 25px; background: var(--bg-card); border: 1px solid var(--border); padding: 10px 15px; border-radius: 30px; display: flex; gap: 10px; box-shadow: var(--shadow); z-index: 1000; }
         .theme-btn { width: 25px; height: 25px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.3s; }
         .theme-btn:hover { transform: scale(1.2); }
@@ -81,20 +81,21 @@
         .link-card .l-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
         .link-card .l-info p { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ===== بخش اخبار با مدیا ===== */
+        /* ===== بخش اخبار با استایل دقیق تاریخ ===== */
         .news-item { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; overflow: hidden; }
         .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
         .n-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); }
-        .n-date { background: var(--border); color: var(--text-muted); padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
+        .n-date { background: var(--border); color: var(--accent); padding: 4px 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; direction: ltr; }
+
         .btn-download { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff !important; padding: 12px 22px; border-radius: 10px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* مدیا (عکس و ویدیو) */
+        /* عکس و ویدیو اخبار */
         .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-top: 15px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
         .news-media-img:hover { opacity: 0.9; }
         .news-media-vid { width: 100%; max-height: 500px; border-radius: 12px; margin-top: 15px; outline: none; border: 1px solid var(--border); background: #000; }
 
-        /* ===== پنل ادمین (با سیستم گالری) ===== */
+        /* ===== پنل ادمین ===== */
         .admin-box { margin-top: 50px; text-align: center; border: 1px dashed var(--border); padding: 30px; border-radius: 16px; }
         .admin-box input[type="text"], .admin-box textarea { width: 100%; padding: 15px; margin-top: 12px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); border-radius: 10px; font-family: inherit; }
         
@@ -119,7 +120,7 @@
         .close-btn { position: absolute; top: 15px; left: 20px; font-size: 1.5rem; color: var(--text-muted); background: none; border: none; cursor: pointer; }
         .modal-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-        /* نمایش تصویر تمام صفحه (لایت باکس) */
+        /* نمایش تصویر تمام صفحه */
         .img-viewer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); display: none; justify-content: center; align-items: center; z-index: 2000; cursor: zoom-out; }
         .img-viewer-overlay.active { display: flex; }
         .img-viewer-overlay img { max-width: 95%; max-height: 95%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
@@ -197,7 +198,6 @@
                     <input type="text" id="nTitle" placeholder="عنوان خبر / آپدیت">
                     <textarea id="nText" rows="4" placeholder="متن کامل خبر..."></textarea>
 
-                    <!-- گالری برای عکس و ویدیو -->
                     <div class="file-input-group">
                         <label>📷 انتخاب عکس از گالری:</label>
                         <input type="file" id="nImgFile" accept="image/*">
@@ -208,7 +208,6 @@
                         <input type="file" id="nVidFile" accept="video/*">
                     </div>
 
-                    <!-- فایل APK -->
                     <div class="apk-selector-box">
                         <label>📦 قرار دادن لینک دانلود APK بازی:</label>
                         <button class="quick-btn" onclick="setApkQuick('app-debug.apk')">⚡ تنظیم سریع روی: app-debug.apk</button>
@@ -238,6 +237,32 @@
     <footer>طراحی و توسعه توسط آرتام حمیدی | ۲۰۲۵</footer>
 
     <script>
+        // --- 📅 موتور جدید و دقیق محاسبه تاریخ شمسی ---
+        function getShamsiDate() {
+            let now = new Date();
+            try {
+                // محاسبه دقیق تاریخ شمسی به صورت استاندارد
+                let formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                });
+                let parts = formatter.formatToParts(now);
+                let year = parts.find(p => p.type === 'year').value;
+                let month = parts.find(p => p.type === 'month').value;
+                let day = parts.find(p => p.type === 'day').value;
+                
+                let englishResult = `${year}/${month}/${day}`;
+                
+                // تبدیل به اعداد فارسی زیبا
+                const faDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+                return englishResult.replace(/\d/g, d => faDigits[d]);
+            } catch (e) {
+                // اگر مرورگر قدیمی بود
+                return new Date().toLocaleDateString('fa-IR');
+            }
+        }
+
         // --- تنظیم تم‌ها ---
         function setTheme(themeName) {
             localStorage.setItem('artam_theme', themeName);
@@ -259,12 +284,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- دکمه نام سریع APK ---
         function setApkQuick(fileName) {
             document.getElementById('nApkUrl').value = fileName;
         }
 
-        // --- سیستم آپلود فایل به سایت واسط ---
+        // --- آپلود خودکار ---
         async function uploadFileToCatbox(file) {
             let formData = new FormData();
             formData.append('reqtype', 'fileupload');
@@ -282,7 +306,6 @@
             }
         }
 
-        // --- خواندن فایل به صورت کد (اگر اینترنت قطع بود برای عکس) ---
         function readFileAsDataURL(file) {
             return new Promise((resolve, reject) => {
                 let reader = new FileReader();
@@ -292,7 +315,6 @@
             });
         }
 
-        // --- ادمین و انتشار خبر ---
         function checkAdmin() {
             if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") document.getElementById('adminForm').style.display = 'block';
         }
@@ -309,53 +331,53 @@
             if(!title || !text) return alert("عنوان و متن خبر الزامی است.");
 
             btn.disabled = true;
-            btn.innerText = "⏳ در حال پردازش و آپلود از گالری (لطفا صبر کنید)...";
+            btn.innerText = "⏳ در حال پردازش و ثبت خبر...";
 
             let imgUrl = "";
             let vidUrl = "";
 
             try {
-                // آپلود عکس
                 if(imgInput.files && imgInput.files[0]) {
                     try {
                         imgUrl = await uploadFileToCatbox(imgInput.files[0]);
                     } catch(e) {
-                        // اگر سرور آپلود کار نکرد، عکس رو تو خود مرورگر ذخیره کن
                         imgUrl = await readFileAsDataURL(imgInput.files[0]);
                     }
                 }
 
-                // آپلود ویدیو (فقط به سرور)
                 if(vidInput.files && vidInput.files[0]) {
                     vidUrl = await uploadFileToCatbox(vidInput.files[0]);
                 }
 
-                let allNews = JSON.parse(localStorage.getItem('artam_final_v120') || '[]');
-                allNews.unshift({ title, text, apk: apkUrlText, imgUrl, vidUrl, date: new Date().toLocaleDateString('fa-IR') });
-                localStorage.setItem('artam_final_v120', JSON.stringify(allNews));
+                // محاسبه دقیق تاریخ شمسی در همان لحظه انتشار
+                let currentDate = getShamsiDate();
+
+                let allNews = JSON.parse(localStorage.getItem('artam_fixed_date_news') || '[]');
+                allNews.unshift({ title, text, apk: apkUrlText, imgUrl, vidUrl, date: currentDate });
+                localStorage.setItem('artam_fixed_date_news', JSON.stringify(allNews));
 
                 alert("✅ خبر با موفقیت منتشر شد!");
                 location.reload();
 
             } catch(error) {
-                alert("❌ خطا در آپلود! (اگر ویدیو گذاشتید، حجم آن باید کمتر از 200 مگابایت باشد).");
+                alert("❌ خطا در انتشار خبر!");
             } finally {
                 btn.disabled = false;
                 btn.innerText = "🚀 انتشار در سایت";
             }
         }
 
-        // --- بارگذاری اخبار ---
         function loadNews() {
-            let allNews = JSON.parse(localStorage.getItem('artam_final_v120') || '[]');
+            let allNews = JSON.parse(localStorage.getItem('artam_fixed_date_news') || '[]');
             let container = document.getElementById('newsList');
 
             if(allNews.length === 0) {
+                let initialDate = getShamsiDate();
                 container.innerHTML = `
                     <div class="news-item">
                         <div class="news-header">
                             <span class="n-title">🚀 شروع به کار سایت</span>
-                            <span class="n-date">۱۴۰۳/۱۲/۰۵</span>
+                            <span class="n-date">${initialDate}</span>
                         </div>
                         <p style="color:var(--text-muted);">سلام! سایت شخصی من آماده شد. تمام اخبار و آپدیت‌های جهان ماجراجویی در همین بخش قرار می‌گیرد.</p>
                     </div>`;
@@ -364,7 +386,7 @@
 
             container.innerHTML = "";
             allNews.forEach(item => {
-                let btn = item.apk ? `<br><a href="${item.apk}" class="btn-download" download>📥 دانلود فایل: ${item.apk}</a>` : '';
+                let btn = item.apk ? `<br><a href="${item.apk}" class="btn-download" download>📥 دانلود فایل APK</a>` : '';
                 let imgHTML = item.imgUrl ? `<img src="${item.imgUrl}" class="news-media-img" onclick="openImg(this.src)" title="برای بزرگنمایی کلیک کنید">` : '';
                 
                 let vidHTML = item.vidUrl ? `
@@ -374,7 +396,7 @@
                     </video>` : '';
 
                 container.innerHTML += `
-                    <div class="news-item">
+                    <div class="news-card">
                         <div class="news-header">
                             <span class="n-title">${item.title}</span>
                             <span class="n-date">${item.date}</span>
@@ -387,7 +409,6 @@
             });
         }
 
-        // --- لایت باکس (بزرگنمایی عکس) ---
         function openImg(src) {
             document.getElementById('fullImg').src = src;
             document.getElementById('imgViewer').classList.add('active');
@@ -396,7 +417,6 @@
             document.getElementById('imgViewer').classList.remove('active');
         }
 
-        // --- پاپ‌آپ متنی ---
         const pData = {
             'jahan': {t:"🌍 جهان ماجراجویی", d:"بزرگ‌ترین پروژه من با زبان سی‌شارپ. یک دنیای وسیع که هر روز ویژگی‌های جدیدی به آن اضافه می‌شود."},
             'ramz': {t:"🔐 سایت رمزگذاری", d:"یک ابزار تحت وب تمیز و کاربردی برای رمزنگاری پیام‌ها جهت امنیت بیشتر."},
