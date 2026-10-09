@@ -3,49 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آرتام حمیدی | سایت شخصی</title>
+    <title>آرتام حمیدی | سایت شخصی و مرکز اخبار</title>
     <style>
-        /* ===== فونت وزیرمتن ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap');
+        /* ===== فونت حرفه‌ای وزیرمتن ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* ===== متغیرهای تم‌ها ===== */
+        /* ===== متغیرهای پالت رنگی (تم پیش‌فرض تاریک لوکس) ===== */
         :root {
             --bg-main: #0f172a;
             --bg-card: #1e293b;
+            --bg-hover: #334155;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
             --accent: #10b981;
-            --border: rgba(255, 255, 255, 0.1);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --accent-glow: rgba(16, 185, 129, 0.2);
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
         }
 
         /* تم روشن */
         body.theme-light {
             --bg-main: #f8fafc;
             --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --primary: #7c3aed;
+            --primary-hover: #6d28d9;
             --accent: #059669;
-            --border: rgba(0, 0, 0, 0.1);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --accent-glow: rgba(5, 150, 105, 0.15);
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
         }
 
-        /* تم بنفش */
+        /* تم بنفش اختصاصی */
         body.theme-purple {
             --bg-main: #170f2e;
             --bg-card: #2a1b54;
+            --bg-hover: #3b2375;
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
             --primary: #a78bfa;
+            --primary-hover: #8b5cf6;
             --accent: #34d399;
-            --border: rgba(255, 255, 255, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --accent-glow: rgba(52, 211, 153, 0.25);
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
         }
 
+        /* ===== استایل‌های پایه ===== */
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--bg-main);
@@ -53,67 +67,105 @@
             line-height: 1.9;
             transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-        /* ===== انتخاب‌گر تم (گوشه پایین) ===== */
+        /* اسکرول‌بار اختصاصی */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* ===== پنل شناور تغییر تم ===== */
         .theme-switcher {
             position: fixed;
             bottom: 25px;
             left: 25px;
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 10px 15px;
+            padding: 10px 16px;
             border-radius: 30px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             box-shadow: var(--shadow);
             z-index: 1000;
         }
 
         .theme-btn {
-            width: 25px;
-            height: 25px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 2px solid transparent;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .theme-btn:hover { transform: scale(1.2); }
         .theme-btn.active { border-color: var(--text-main); transform: scale(1.1); }
 
-        .btn-dark { background: #0f172a; border-color: #333; }
-        .btn-light { background: #f8fafc; border-color: #ccc; }
-        .btn-purple { background: #2a1b54; border-color: #555; }
+        .btn-dark { background: #0f172a; }
+        .btn-light { background: #f8fafc; border-color: #ccc !important; }
+        .btn-purple { background: #2a1b54; }
 
-        /* ===== هدر ===== */
+        /* ===== هدر سایت ===== */
         header {
-            padding: 70px 20px 40px;
+            padding: 75px 20px 45px;
             text-align: center;
             border-bottom: 1px solid var(--border);
             background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
+            position: relative;
         }
 
-        header h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; }
-        header .job { color: var(--accent); font-weight: 700; font-size: 1.15rem; }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
 
-        .tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
-        .tag { background: var(--bg-card); border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+        header .job {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
 
-        /* ===== منوی ناوبری ===== */
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* ===== ناوبری (منو) ===== */
         nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            padding: 15px;
+            gap: 12px;
+            padding: 16px;
             position: sticky;
             top: 0;
             z-index: 100;
             background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
 
@@ -124,109 +176,294 @@
             font-family: inherit;
             font-size: 1rem;
             font-weight: 700;
-            padding: 10px 20px;
+            padding: 10px 24px;
             border-radius: 12px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
-        nav button:hover { color: var(--text-main); background: var(--bg-card); }
-        nav button.active { background: var(--primary); color: #fff; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
+        nav button:hover {
+            color: var(--text-main);
+            background: var(--bg-card);
+        }
+
+        nav button.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35);
+        }
 
         /* ===== ساختار صفحات ===== */
         .page-content {
             display: none;
-            max-width: 900px;
+            max-width: 950px;
             margin: 50px auto;
             padding: 0 20px;
-            animation: slideUp 0.4s ease forwards;
+            animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .page-content.active { display: block; }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         section { margin-bottom: 60px; }
-        .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; border-right: 4px solid var(--primary); padding-right: 15px; color: var(--text-main); }
+
+        .section-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            border-right: 4px solid var(--primary);
+            padding-right: 15px;
+            color: var(--text-main);
+            display: inline-block;
+        }
+
         .title-green { border-right-color: var(--accent); }
 
         /* ===== کارت‌ها ===== */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .grid-small { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 15px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .grid-small {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+        }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 25px;
-            transition: all 0.3s ease;
+            padding: 28px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow);
         }
 
         .card.interactive { cursor: pointer; }
-        .card.interactive:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow); }
+        
+        .card.interactive:hover {
+            transform: translateY(-6px);
+            background: var(--bg-hover);
+            border-color: var(--primary);
+        }
 
-        .card .icon { font-size: 2.2rem; margin-bottom: 12px; }
-        .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
-        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .card .icon { font-size: 2.4rem; margin-bottom: 12px; }
+        .card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
 
         /* زبان‌های برنامه‌نویسی */
-        .lang-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; }
-        .lang-item { background: var(--bg-card); border: 1px solid var(--border); padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+        .lang-list { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; }
+        .lang-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px 22px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+        .lang-item:hover { border-color: var(--accent); transform: translateY(-2px); }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
 
         /* لینک‌های ارتباطی */
-        .link-card { display: flex; align-items: center; gap: 15px; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s; }
-        .link-card:hover { border-color: var(--primary); transform: scale(1.02); }
-        .link-card .l-icon { font-size: 1.8rem; }
-        .link-card .l-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-card);
+            padding: 22px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+            background: var(--bg-hover);
+        }
+
+        .link-card .l-icon { font-size: 1.9rem; }
+        .link-card .l-info h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .link-card .l-info p { font-size: 0.85rem; color: var(--text-muted); }
 
         /* ===== بخش اخبار ===== */
-        .news-item { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; overflow: hidden; }
-        .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        .n-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); }
+        .news-item {
+            background: var(--bg-card);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            margin-bottom: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .n-title { font-size: 1.3rem; font-weight: 800; color: var(--text-main); }
         .n-date { background: var(--border); color: var(--accent); padding: 4px 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; direction: ltr; }
 
-        .btn-download { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff !important; padding: 12px 22px; border-radius: 10px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
-        .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
 
-        /* مدیا (عکس و ویدیو اخبار) */
-        .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-top: 15px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
+        .btn-download:hover { opacity: 0.92; transform: translateY(-2px); }
+
+        /* مدیا (عکس و ویدیو) */
+        .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 14px; margin-top: 18px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
         .news-media-img:hover { opacity: 0.9; }
-        .news-media-vid { width: 100%; max-height: 500px; border-radius: 12px; margin-top: 15px; outline: none; border: 1px solid var(--border); background: #000; }
+        .news-media-vid { width: 100%; max-height: 500px; border-radius: 14px; margin-top: 18px; outline: none; border: 1px solid var(--border); background: #000; }
 
         /* ===== پنل ادمین ===== */
-        .admin-box { margin-top: 50px; text-align: center; border: 1px dashed var(--border); padding: 30px; border-radius: 16px; }
-        .admin-box input[type="text"], .admin-box textarea { width: 100%; padding: 15px; margin-top: 12px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); border-radius: 10px; font-family: inherit; }
-        
-        .file-input-group { margin-top: 15px; text-align: right; background: var(--bg-main); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
+        .admin-box {
+            margin-top: 50px;
+            text-align: center;
+            border: 1px dashed var(--border);
+            padding: 32px;
+            border-radius: 18px;
+            background: var(--bg-card);
+        }
+
+        .admin-box input[type="text"], .admin-box textarea {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            background: var(--bg-main);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+        }
+
+        .file-input-group {
+            margin-top: 15px;
+            text-align: right;
+            background: var(--bg-main);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
         .file-input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--primary); font-size: 0.95rem; }
         .file-input-group input[type="file"] { width: 100%; color: var(--text-muted); cursor: pointer; }
 
-        .apk-selector-box { margin-top: 15px; background: var(--bg-main); padding: 18px; border-radius: 12px; border: 1px solid var(--border); text-align: right; }
+        .apk-selector-box {
+            margin-top: 15px;
+            background: var(--bg-main);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: right;
+        }
+
         .apk-selector-box label { display: block; font-weight: bold; margin-bottom: 10px; color: var(--accent); font-size: 0.95rem; }
-        
-        .quick-btn { background: rgba(139, 92, 246, 0.15); border: 1px solid var(--primary); color: var(--primary); padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: inherit; font-weight: bold; transition: 0.2s; margin-bottom: 10px; display: inline-block; }
+
+        .quick-btn {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.2s;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
         .quick-btn:hover { background: var(--primary); color: #fff; }
 
-        .btn-submit { width: 100%; padding: 15px; margin-top: 20px; background: var(--primary); color: #fff; border: none; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { background: var(--accent); color: #000; }
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            margin-top: 22px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
         /* پاپ‌آپ متنی */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
         .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-content { background: var(--bg-card); width: 90%; max-width: 500px; padding: 35px; border-radius: 20px; border: 1px solid var(--border); position: relative; transform: scale(0.9); transition: 0.3s; }
+
+        .modal-content {
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 520px;
+            padding: 35px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            position: relative;
+            transform: scale(0.9);
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+
         .modal-overlay.active .modal-content { transform: scale(1); }
-        .close-btn { position: absolute; top: 15px; left: 20px; font-size: 1.5rem; color: var(--text-muted); background: none; border: none; cursor: pointer; }
+        .close-btn { position: absolute; top: 16px; left: 22px; font-size: 1.5rem; color: var(--text-muted); background: none; border: none; cursor: pointer; }
         .modal-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-        /* نمایش تصویر تمام صفحه */
-        .img-viewer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); display: none; justify-content: center; align-items: center; z-index: 2000; cursor: zoom-out; }
+        /* نمایش تصویر تمام صفحه (لایت باکس) */
+        .img-viewer-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: zoom-out;
+        }
+
         .img-viewer-overlay.active { display: flex; }
-        .img-viewer-overlay img { max-width: 95%; max-height: 95%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        .img-viewer-overlay img { max-width: 95%; max-height: 95%; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
 
         footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 40px; }
     </style>
@@ -252,6 +489,7 @@
         </div>
     </header>
 
+    <!-- منوی ناوبری -->
     <nav>
         <button id="tab-home" class="active" onclick="showTab('home')">درباره و پروژه‌ها</button>
         <button id="tab-news" onclick="showTab('news')">اخبار و رسانه</button>
@@ -432,7 +670,7 @@
     <div id="page-news" class="page-content">
         <section>
             <h2 class="section-title title-green">اخبار، تصاویر و ویدیوها</h2>
-            <div id="newsList"></div>
+            <div id="newsList">درحال بارگذاری اخبار...</div>
 
             <div class="admin-box">
                 <button onclick="checkAdmin()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; text-decoration:underline;">🔒 ورود به پنل انتشار خبر (آرتام)</button>
@@ -478,11 +716,15 @@
 
     <footer>طراحی و توسعه توسط آرتام حمیدی | ۲۰۲۵</footer>
 
+    <!-- ادامه دارد... (بخش دوم در پیام بعدی قرار می‌گیرد) -->
+
     <!-- ===== اسکریپت‌ها ===== -->
     <script>
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_bulletproof_v200";
+        // آدرس دیتابیس ابری سرور مرکزی برای همگام‌سازی جهانی اخبار
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_news_global_v300";
+        const PROXY = "https://api.codetabs.com/v1/proxy?quest=";
 
-        // --- 📅 محاسبه تاریخ شمسی ---
+        // --- 📅 محاسبه دقیق تاریخ شمسی با اعداد فارسی ---
         function getShamsiDate() {
             try {
                 const f = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {year:'numeric', month:'2-digit', day:'2-digit'});
@@ -498,40 +740,49 @@
             }
         }
 
-        // --- تنظیم تم‌ها ---
+        // --- 🎨 سیستم مدیریت و ذخیره تم‌ها ---
         function setTheme(themeName) {
             localStorage.setItem('artam_theme', themeName);
             document.body.className = '';
-            if(themeName !== 'dark') document.body.classList.add('theme-' + themeName);
+            if(themeName !== 'dark') {
+                document.body.classList.add('theme-' + themeName);
+            }
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.btn-' + themeName).classList.add('active');
+            const activeBtn = document.querySelector('.btn-' + themeName);
+            if(activeBtn) activeBtn.classList.add('active');
         }
 
+        // اجرا به محض لود شدن کامل صفحه
         window.onload = function() {
             setTheme(localStorage.getItem('artam_theme') || 'dark');
             loadNews();
         };
 
-        function showTab(t) {
+        // --- 🚀 سیستم ناوبری و سوئیچ بین تب‌ها ---
+        function showTab(tabId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
-            document.getElementById('page-'+t).classList.add('active');
-            document.getElementById('tab-'+t).classList.add('active');
+            document.getElementById('page-' + tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // تنظیم سریع نام فایل APK
         function setApkQuick(fileName) {
             document.getElementById('nApkUrl').value = fileName;
         }
 
-        // --- آپلود ایمن بدون برهم زدن برنامه ---
+        // --- 📷 🎥 سیستم آپلود فایل‌های رسانه‌ای (عکس و ویدیو) ---
         async function uploadFileToCatbox(file) {
             let formData = new FormData();
             formData.append('reqtype', 'fileupload');
             formData.append('fileToUpload', file);
             let response = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: formData });
-            if (response.ok) return await response.text();
-            else throw new Error("آپلود نا‌موفق بود.");
+            if (response.ok) {
+                return await response.text();
+            } else {
+                throw new Error("آپلود نا‌موفق بود.");
+            }
         }
 
         function readFileAsDataURL(file) {
@@ -543,12 +794,15 @@
             });
         }
 
+        // --- 🔒 ورود ادمین و انتشار خبر جدید ---
         function checkAdmin() {
-            if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") document.getElementById('adminForm').style.display = 'block';
-            else alert("❌ رمز اشتباه است!");
+            if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") {
+                document.getElementById('adminForm').style.display = 'block';
+            } else {
+                alert("❌ رمز اشتباه است!");
+            }
         }
 
-        // --- انتشار خبر ضد ارور ---
         async function postNews() {
             let title = document.getElementById('nTitle').value.trim();
             let text = document.getElementById('nText').value.trim();
@@ -561,12 +815,12 @@
             if(!title || !text) return alert("لطفاً عنوان و متن خبر را وارد کنید.");
 
             btn.disabled = true;
-            btn.innerText = "⏳ در حال ثبت و انتشار خبر...";
+            btn.innerText = "⏳ در حال پردازش و انتشار خبر...";
 
             let imgUrl = "";
             let vidUrl = "";
 
-            // ۱. پردازش عکس (ایمن)
+            // ۱. پردازش ایمن عکس
             if(imgInput && imgInput.files && imgInput.files[0]) {
                 try {
                     imgUrl = await uploadFileToCatbox(imgInput.files[0]);
@@ -579,12 +833,12 @@
                 }
             }
 
-            // ۲. پردازش ویدیو (ایمن)
+            // ۲. پردازش ایمن ویدیو
             if(vidInput && vidInput.files && vidInput.files[0]) {
                 try {
                     vidUrl = await uploadFileToCatbox(vidInput.files[0]);
                 } catch(e) {
-                    alert("⚠️ آپلود ویدیو موفقیت‌آمیز نبود، خبر بدون ویدیو منتشر می‌شود.");
+                    alert("⚠️ ویدیو قابل آپلود نبود، خبر بدون ویدیو قرار می‌گیرد.");
                 }
             }
 
@@ -598,7 +852,7 @@
                 date: getShamsiDate()
             };
 
-            // ۳. ذخیره محلی بدون شکست
+            // ۳. ذخیره محلی در مرورگر
             try {
                 let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
                 if(!Array.isArray(localNews)) localNews = [];
@@ -607,47 +861,56 @@
             } catch(e) {
                 try {
                     let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
-                    newPost.imgUrl = ""; // پاک کردن عکس سنگین در صورت پر بودن حافظه
+                    newPost.imgUrl = "";
                     localNews.unshift(newPost);
                     localStorage.setItem('artam_news_v200', JSON.stringify(localNews));
                 } catch(err) {}
             }
 
-            // ۴. ارسال ابری در پس‌زمینه بدون ایجاد ارور
+            // ۴. ارسال همگام‌سازی ابری
             try {
-                let res = await fetch(DB_URL);
+                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
                 let cloudNews = res.ok ? await res.json() : [];
                 if(!Array.isArray(cloudNews)) cloudNews = [];
                 cloudNews.unshift(newPost);
-                await fetch(DB_URL, { method: 'POST', body: JSON.stringify(cloudNews) });
-            } catch(err) {}
+                await fetch(PROXY + encodeURIComponent(DB_URL), { 
+                    method: 'POST', 
+                    body: JSON.stringify(cloudNews) 
+                });
+            } catch(err) {
+                console.log("ارسال ابری انجام نشد، پیام به صورت محلی ذخیره گردید.");
+            }
 
             alert("✅ خبر با موفقیت منتشر شد!");
             location.reload();
         }
 
-        // --- بارگذاری اخبار ---
+        // --- 📰 بارگذاری و نمایش اخبار ---
         async function loadNews() {
             let container = document.getElementById('newsList');
             let allNews = [];
 
+            // ۱. بارگذاری اولیه از حافظه محلی
             let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
             if(Array.isArray(localNews)) allNews = localNews;
 
+            // ۲. تلاش برای دریافت جدیدترین اخبار از سرور ابری
             try {
-                let res = await fetch(DB_URL);
+                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
                 if(res.ok) {
                     let cloudNews = await res.json();
                     if(Array.isArray(cloudNews) && cloudNews.length > 0) {
                         allNews = cloudNews;
                     }
                 }
-            } catch(e) {}
+            } catch(e) {
+                // در صورت قطع بودن اینترنت ابری بدون نمایش ارور اخبار محلی نشان داده می‌شوند
+            }
 
             if(allNews.length === 0) {
                 let currentDate = getShamsiDate();
                 container.innerHTML = `
-                    <div class="news-item">
+                    <div class="news-card">
                         <div class="news-header">
                             <span class="n-title">🚀 شروع به کار رسمی سایت آرتام</span>
                             <span class="n-date">${currentDate}</span>
@@ -683,6 +946,7 @@
             });
         }
 
+        // --- 🔍 نمایش تصویر تمام صفحه (لایت‌باکس) ---
         function openImg(src) {
             document.getElementById('fullImg').src = src;
             document.getElementById('imgViewer').classList.add('active');
@@ -691,7 +955,7 @@
             document.getElementById('imgViewer').classList.remove('active');
         }
 
-        // --- پاپ‌آپ متنی پروژه‌ها ---
+        // --- 💬 پاپ‌آپ متنی پروژه‌ها با جزییات کامل ---
         const pData = {
             'jahan': {
                 title: "🌍 جهان ماجراجویی (پروژه اصلی)",
@@ -724,8 +988,12 @@
             document.getElementById('mDesc').innerText = pData[id].desc;
             document.getElementById('myModal').classList.add('active');
         }
-        function closeMBtn() { document.getElementById('myModal').classList.remove('active'); }
-        function closeM(e) { if(e.target.classList.contains('modal-overlay')) closeMBtn(); }
+        function closeMBtn() { 
+            document.getElementById('myModal').classList.remove('active'); 
+        }
+        function closeM(e) { 
+            if(e.target.classList.contains('modal-overlay')) closeMBtn(); 
+        }
     </script>
 </body>
 </html>
