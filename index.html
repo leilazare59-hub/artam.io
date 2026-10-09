@@ -5,141 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آرتام حمیدی | سایت شخصی</title>
     <style>
-        /* ===== فونت ===== */
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         /* ===== متغیرهای تم‌ها ===== */
-        /* 1. تم تاریک (پیش‌فرض) */
         :root {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #8b5cf6;
-            --accent: #10b981;
+            --bg-main: #0f172a; --bg-card: #1e293b;
+            --text-main: #f8fafc; --text-muted: #94a3b8;
+            --primary: #8b5cf6; --accent: #10b981;
             --border: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* 2. تم روشن */
         body.theme-light {
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #7c3aed;
-            --accent: #059669;
+            --bg-main: #f8fafc; --bg-card: #ffffff;
+            --text-main: #0f172a; --text-muted: #64748b;
+            --primary: #7c3aed; --accent: #059669;
             --border: rgba(0, 0, 0, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        /* 3. تم بنفش (اختصاصی) */
         body.theme-purple {
-            --bg-main: #170f2e;
-            --bg-card: #2a1b54;
-            --text-main: #ffffff;
-            --text-muted: #cbd5e1;
-            --primary: #a78bfa;
-            --accent: #34d399;
+            --bg-main: #170f2e; --bg-card: #2a1b54;
+            --text-main: #ffffff; --text-muted: #cbd5e1;
+            --primary: #a78bfa; --accent: #34d399;
             --border: rgba(255, 255, 255, 0.15);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* ===== استایل‌های پایه ===== */
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.8;
-            transition: background-color 0.4s ease, color 0.4s ease;
-            overflow-x: hidden;
-        }
-
+        body { font-family: 'Vazirmatn', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.8; transition: 0.4s; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
-        /* ===== انتخاب‌گر تم (گوشه سایت) ===== */
-        .theme-switcher {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 10px 15px;
-            border-radius: 30px;
-            display: flex;
-            gap: 10px;
-            box-shadow: var(--shadow);
-            z-index: 1000;
-        }
-        
-        .theme-btn {
-            width: 25px; height: 25px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
+        /* تم سوئیچر */
+        .theme-switcher { position: fixed; bottom: 25px; left: 25px; background: var(--bg-card); border: 1px solid var(--border); padding: 10px 15px; border-radius: 30px; display: flex; gap: 10px; box-shadow: var(--shadow); z-index: 1000; }
+        .theme-btn { width: 25px; height: 25px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.3s; }
         .theme-btn:hover { transform: scale(1.2); }
         .theme-btn.active { border-color: var(--text-main); transform: scale(1.1); }
+        .btn-dark { background: #0f172a; } .btn-light { background: #f8fafc; } .btn-purple { background: #2a1b54; }
 
-        .btn-dark { background: #0f172a; border-color: #333; }
-        .btn-light { background: #f8fafc; border-color: #ccc; }
-        .btn-purple { background: #2a1b54; border-color: #555; }
-
-        /* ===== هدر ===== */
-        header {
-            padding: 70px 20px 40px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
-        }
-
-        .avatar {
-            width: 140px; height: 140px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-        }
-
-        .avatar img {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-main);
-            background: var(--bg-card);
-        }
-
-        header h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 5px; }
+        /* هدر */
+        header { padding: 70px 20px 40px; text-align: center; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%); }
+        .avatar { width: 140px; height: 140px; margin: 0 auto 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary), var(--accent)); }
+        .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-main); }
+        header h1 { font-size: 2.5rem; font-weight: 900; }
         header .job { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
-        
         .tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
         .tag { background: var(--bg-card); border: 1px solid var(--border); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
 
-        /* ===== ناوبری ===== */
-        nav {
-            display: flex; justify-content: center; gap: 10px;
-            padding: 15px;
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(var(--bg-main), 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav button {
-            background: transparent; border: none;
-            color: var(--text-muted); font-family: inherit; font-size: 1rem; font-weight: 700;
-            padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: 0.3s;
-        }
-
+        /* ناوبری */
+        nav { display: flex; justify-content: center; gap: 10px; padding: 15px; position: sticky; top: 0; z-index: 100; background: rgba(var(--bg-main), 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        nav button { background: transparent; border: none; color: var(--text-muted); font-family: inherit; font-size: 1rem; font-weight: 700; padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
         nav button:hover { color: var(--text-main); background: var(--bg-card); }
         nav button.active { background: var(--primary); color: #fff; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
 
-        /* ===== صفحات ===== */
+        /* صفحات */
         .page-content { display: none; max-width: 900px; margin: 50px auto; padding: 0 20px; animation: slideUp 0.4s ease forwards; }
         .page-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
@@ -148,21 +68,11 @@
         .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; border-right: 4px solid var(--primary); padding-right: 15px; color: var(--text-main); }
         .title-green { border-right-color: var(--accent); }
 
-        /* ===== کارت‌ها ===== */
+        /* کارت‌ها */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .grid-small { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; transition: 0.3s; }
         .card.interactive { cursor: pointer; }
         .card.interactive:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow); }
-
         .card .icon { font-size: 2.2rem; margin-bottom: 12px; }
         .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .card p { color: var(--text-muted); font-size: 0.95rem; }
@@ -173,40 +83,54 @@
         .link-card .l-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
         .link-card .l-info p { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ===== اخبار ===== */
-        .news-item { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; }
+        /* ===== بخش اخبار با ویدیو و عکس ===== */
+        .news-item { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; overflow: hidden; }
         .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
         .n-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); }
         .n-date { background: var(--border); color: var(--text-muted); padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
         .btn-download { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff !important; padding: 12px 20px; border-radius: 10px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* پنل ادمین */
-        .admin-box { margin-top: 50px; text-align: center; border: 1px dashed var(--border); padding: 30px; border-radius: 16px; }
-        .admin-box input, .admin-box textarea { width: 100%; padding: 15px; margin-top: 15px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); border-radius: 10px; font-family: inherit; }
-        .admin-box button { width: 100%; padding: 15px; margin-top: 15px; background: var(--primary); color: #fff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: inherit; }
+        /* عکس و ویدیو اخبار */
+        .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-top: 15px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
+        .news-media-img:hover { opacity: 0.9; }
+        .news-media-vid { width: 100%; max-height: 500px; border-radius: 12px; margin-top: 15px; outline: none; border: 1px solid var(--border); background: #000; }
 
-        /* ===== پاپ‌آپ ===== */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
+        /* ===== پنل ادمین (با دکمه‌های گالری) ===== */
+        .admin-box { margin-top: 50px; text-align: center; border: 1px dashed var(--border); padding: 30px; border-radius: 16px; }
+        .admin-box input[type="text"], .admin-box textarea { width: 100%; padding: 15px; margin-top: 15px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); border-radius: 10px; font-family: inherit; }
+        
+        .file-input-group { margin-top: 15px; text-align: right; background: var(--bg-main); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
+        .file-input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--accent); font-size: 0.95rem; }
+        .file-input-group input[type="file"] { width: 100%; color: var(--text-muted); cursor: pointer; }
+
+        .btn-submit { width: 100%; padding: 15px; margin-top: 20px; background: var(--primary); color: #fff; border: none; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--accent); color: #000; }
+
+        /* پاپ‌آپ متنی */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
         .modal-content { background: var(--bg-card); width: 90%; max-width: 500px; padding: 35px; border-radius: 20px; border: 1px solid var(--border); position: relative; transform: scale(0.9); transition: 0.3s; }
         .modal-overlay.active .modal-content { transform: scale(1); }
         .close-btn { position: absolute; top: 15px; left: 20px; font-size: 1.5rem; color: var(--text-muted); background: none; border: none; cursor: pointer; }
         .modal-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
+        /* نمایش تصویر تمام صفحه (لایت باکس) */
+        .img-viewer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); display: none; justify-content: center; align-items: center; z-index: 2000; cursor: zoom-out; }
+        .img-viewer-overlay.active { display: flex; }
+        .img-viewer-overlay img { max-width: 95%; max-height: 95%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+
         footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <!-- دکمه تغییر تم (گوشه تصویر) -->
     <div class="theme-switcher">
         <div class="theme-btn btn-dark active" onclick="setTheme('dark')" title="تم تاریک"></div>
         <div class="theme-btn btn-light" onclick="setTheme('light')" title="تم روشن"></div>
         <div class="theme-btn btn-purple" onclick="setTheme('purple')" title="تم بنفش"></div>
     </div>
 
-    <!-- هدر -->
     <header>
         <div class="avatar"><img src="profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Artam'"></div>
         <h1>آرتام حمیدی</h1>
@@ -218,22 +142,17 @@
         </div>
     </header>
 
-    <!-- منو -->
     <nav>
         <button id="tab-home" class="active" onclick="showTab('home')">درباره و پروژه‌ها</button>
-        <button id="tab-news" onclick="showTab('news')">اخبار و آپدیت‌ها</button>
+        <button id="tab-news" onclick="showTab('news')">اخبار و رسانه</button>
     </nav>
 
     <!-- صفحه اصلی -->
     <div id="page-home" class="page-content active">
-        
         <section>
             <h2 class="section-title">مسیر فعالیت من</h2>
             <div class="card">
-                <p>
-                    سلام! من آرتام حمیدی هستم. حدود ۲ ساله که در فضای مجازی و شبکه‌های اجتماعی فعالیت دارم. از مدیریت کانال دانستنی تلگرام (با ۴۰۰ عضو) تا تولید محتوای ماینکرفت.
-                    در حال حاضر تمام تمرکز من روی خلق <strong>«جهان ماجراجویی»</strong> است؛ پروژه‌ای بزرگ با زبان سی‌شارپ که ترکیبی از مهارت‌های برنامه‌نویسی و علاقه من به داستان‌نویسی (مثل رمان‌های گای و صد سال فرصت) محسوب می‌شود.
-                </p>
+                <p>سلام! من آرتام حمیدی هستم. حدود ۲ ساله که در فضای مجازی فعالیت دارم. از مدیریت کانال دانستنی تلگرام (با ۴۰۰ عضو) تا تولید محتوای ماینکرفت. در حال حاضر تمام تمرکز من روی خلق <strong>«جهان ماجراجویی»</strong> است؛ پروژه‌ای با زبان سی‌شارپ که ترکیبی از برنامه‌نویسی و رمان‌نویسی است.</p>
             </div>
         </section>
 
@@ -250,24 +169,6 @@
         </section>
 
         <section>
-            <h2 class="section-title">مهارت‌های تخصصی</h2>
-            <div class="grid-small">
-                <div class="card" style="text-align:center; padding: 20px;"><div class="icon">💻</div><h3>برنامه‌نویسی</h3></div>
-                <div class="card" style="text-align:center; padding: 20px;"><div class="icon">📖</div><h3>داستان‌سرایی</h3></div>
-                <div class="card" style="text-align:center; padding: 20px;"><div class="icon">🎬</div><h3>تولید محتوا</h3></div>
-                <div class="card" style="text-align:center; padding: 20px;"><div class="icon">🔧</div><h3>سخت‌افزار</h3></div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title title-green">رمان‌ها و نوشته‌ها</h2>
-            <div class="grid">
-                <div class="card"><div class="icon">📕</div><h3>رمان گای</h3><p>داستانی تخیلی از انتخاب‌ها و چالش‌ها.</p></div>
-                <div class="card"><div class="icon">📗</div><h3>صد سال فرصت</h3><p>روایتی از مفهوم زمان و فرصت‌های دوباره.</p></div>
-            </div>
-        </section>
-
-        <section>
             <h2 class="section-title">ارتباط مستقیم با من</h2>
             <div class="grid">
                 <a href="https://t.me/AaPi8" target="_blank"><div class="link-card"><div class="l-icon">✈️</div><div class="l-info"><h4>تلگرام</h4><p>@AaPi8</p></div></div></a>
@@ -276,28 +177,42 @@
                 <a href="https://youtube.com/@artamix-c4n?si=KYUaxabnh3JvSkRy" target="_blank"><div class="link-card"><div class="l-icon">🔴</div><div class="l-info"><h4>یوتیوب</h4><p>مشاهده کانال</p></div></div></a>
             </div>
         </section>
-
     </div>
 
     <!-- صفحه اخبار -->
     <div id="page-news" class="page-content">
         <section>
-            <h2 class="section-title">تابلوی اعلانات و دانلودها</h2>
+            <h2 class="section-title">اخبار، تصاویر و ویدیوها</h2>
             <div id="newsList"></div>
 
             <div class="admin-box">
-                <button onclick="checkAdmin()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-weight:600;">🔒 ورود به پنل انتشار خبر (مخصوص آرتام)</button>
+                <button onclick="checkAdmin()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; text-decoration:underline;">🔒 ورود به پنل انتشار خبر (آرتام)</button>
                 <div id="adminForm" style="display:none; text-align:right;">
-                    <input type="text" id="nTitle" placeholder="عنوان آپدیت">
-                    <textarea id="nText" rows="4" placeholder="توضیحات آپدیت..."></textarea>
-                    <input type="text" id="nApk" placeholder="لینک فایل دانلود (اختیاری)">
-                    <button onclick="postNews()">🚀 انتشار در سایت</button>
+                    <input type="text" id="nTitle" placeholder="عنوان خبر / آپدیت">
+                    <textarea id="nText" rows="4" placeholder="متن کامل خبر..."></textarea>
+                    
+                    <!-- انتخاب عکس مستقیم از گالری -->
+                    <div class="file-input-group">
+                        <label>📷 انتخاب عکس از گالری / سیستم:</label>
+                        <input type="file" id="nImgFile" accept="image/*">
+                    </div>
+
+                    <!-- انتخاب ویدیو مستقیم از گالری -->
+                    <div class="file-input-group">
+                        <label>🎥 انتخاب ویدیو از گالری / سیستم:</label>
+                        <input type="file" id="nVidFile" accept="video/*">
+                    </div>
+
+                    <!-- فایل دانلود APK -->
+                    <input type="text" id="nApk" placeholder="لینک فایل APK برای دانلود (مثلاً: jahan.apk)">
+                    
+                    <button class="btn-submit" id="btnPublish" onclick="postNews()">🚀 انتشار در سایت</button>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- پاپ‌آپ -->
+    <!-- پاپ‌آپ متنی -->
     <div class="modal-overlay" id="myModal" onclick="closeM(event)">
         <div class="modal-content">
             <button class="close-btn" onclick="closeMBtn()">✖</button>
@@ -306,33 +221,27 @@
         </div>
     </div>
 
+    <!-- نمایش تصویر تمام صفحه -->
+    <div class="img-viewer-overlay" id="imgViewer" onclick="closeImg()">
+        <img id="fullImg" src="" alt="Full Image">
+    </div>
+
     <footer>طراحی و توسعه توسط آرتام حمیدی | ۲۰۲۵</footer>
 
     <script>
-        // --- سیستم تغییر تم ---
+        // --- تنظیم تم‌ها ---
         function setTheme(themeName) {
-            // ذخیره در مرورگر
             localStorage.setItem('artam_theme', themeName);
-            
-            // پاک کردن کلاس‌های قبلی
-            document.body.classList.remove('theme-light', 'theme-purple');
-            
-            // اضافه کردن کلاس جدید اگر دارک نبود
+            document.body.className = '';
             if(themeName !== 'dark') document.body.classList.add('theme-' + themeName);
-            
-            // استایل دکمه‌ها
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.btn-' + themeName).classList.add('active');
         }
-
-        // بارگذاری تم ذخیره شده
         window.onload = function() {
-            let savedTheme = localStorage.getItem('artam_theme') || 'dark';
-            setTheme(savedTheme);
+            setTheme(localStorage.getItem('artam_theme') || 'dark');
             loadNews();
         };
 
-        // --- تب‌ها ---
         function showTab(t) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
@@ -341,55 +250,129 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- اخبار ---
-        function checkAdmin() {
-            if(prompt("رمز عبور:") === "123123آرتام آر آر آر آرت") document.getElementById('adminForm').style.display = 'block';
-            else alert("رمز عبور اشتباه است!");
+        // --- آپلود خودکار عکس و ویدیو انتخاب شده از گالری ---
+        async function uploadFileToCatbox(file) {
+            let formData = new FormData();
+            formData.append('reqtype', 'fileupload');
+            formData.append('fileToUpload', file);
+            
+            let response = await fetch('https://catbox.moe/user/api.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                return await response.text(); // لینک مستقیم فایل آپلود شده
+            } else {
+                throw new Error("آپلود فایل انجام نشد.");
+            }
         }
 
-        function postNews() {
+        // تبدیل عکس به فرمت داخلی مرورگر اگر سرور در دسترس نبود
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                let reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function checkAdmin() {
+            if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") document.getElementById('adminForm').style.display = 'block';
+        }
+
+        async function postNews() {
             let title = document.getElementById('nTitle').value;
             let text = document.getElementById('nText').value;
             let apk = document.getElementById('nApk').value;
-            if(!title || !text) return alert("عنوان و متن الزامی است.");
-            
-            let allNews = JSON.parse(localStorage.getItem('artam_clean_news') || '[]');
-            allNews.unshift({ title, text, apk, date: new Date().toLocaleDateString('fa-IR') });
-            localStorage.setItem('artam_clean_news', JSON.stringify(allNews));
-            location.reload();
+            let imgInput = document.getElementById('nImgFile');
+            let vidInput = document.getElementById('nVidFile');
+            let btn = document.getElementById('btnPublish');
+
+            if(!title || !text) return alert("عنوان و متن خبر الزامی است.");
+
+            btn.disabled = true;
+            btn.innerText = "⏳ در حال پردازش و آپلود فایل‌های انتخاب شده از گالری...";
+
+            let imgUrl = "";
+            let vidUrl = "";
+
+            try {
+                // پردازش عکس انتخاب شده از گالری
+                if(imgInput.files && imgInput.files[0]) {
+                    try {
+                        imgUrl = await uploadFileToCatbox(imgInput.files[0]);
+                    } catch(e) {
+                        imgUrl = await readFileAsDataURL(imgInput.files[0]);
+                    }
+                }
+
+                // پردازش ویدیو انتخاب شده از گالری
+                if(vidInput.files && vidInput.files[0]) {
+                    vidUrl = await uploadFileToCatbox(vidInput.files[0]);
+                }
+
+                let allNews = JSON.parse(localStorage.getItem('artam_gallery_news') || '[]');
+                allNews.unshift({ title, text, apk, imgUrl, vidUrl, date: new Date().toLocaleDateString('fa-IR') });
+                localStorage.setItem('artam_gallery_news', JSON.stringify(allNews));
+
+                alert("✅ خبر با موفقیت همراه با فایل‌های گالری منتشر شد!");
+                location.reload();
+
+            } catch(error) {
+                alert("❌ خطا در آپلود ویدیو/عکس از گالری! لطفا حجم فایل را بررسی کنید.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "🚀 انتشار در سایت";
+            }
         }
 
         function loadNews() {
-            let allNews = JSON.parse(localStorage.getItem('artam_clean_news') || '[]');
+            let allNews = JSON.parse(localStorage.getItem('artam_gallery_news') || '[]');
             let container = document.getElementById('newsList');
+
             if(allNews.length === 0) {
-                container.innerHTML = `
-                    <div class="news-item">
-                        <div class="news-header">
-                            <span class="n-title">🚀 شروع به کار سایت</span>
-                            <span class="n-date">۱۴۰۳/۱۲/۰۵</span>
-                        </div>
-                        <p class="news-body">سلام! سایت شخصی من با ظاهری جدید، تمیز و مدرن آماده شد. زین پس فایل بازی‌ها و آپدیت‌های «جهان ماجراجویی» در همین بخش قرار می‌گیرد.</p>
-                        <a href="jahan.apk" class="btn-download" download>📥 دانلود مستقیم فایل بازی</a>
-                    </div>`;
+                container.innerHTML = `<div class="news-item">هیچ خبری منتشر نشده است.</div>`;
                 return;
             }
+
             container.innerHTML = "";
             allNews.forEach(item => {
-                let btn = item.apk ? `<a href="${item.apk}" class="btn-download" download>📥 دانلود نسخه جدید</a>` : '';
+                let btn = item.apk ? `<br><a href="${item.apk}" class="btn-download" download>📥 دانلود فایل APK</a>` : '';
+                let imgHTML = item.imgUrl ? `<img src="${item.imgUrl}" class="news-media-img" onclick="openImg(this.src)" title="برای بزرگنمایی کلیک کنید">` : '';
+                
+                // ویدیو پلیر کامل با نوار زمان، استوپ، سرعت و تمام صفحه
+                let vidHTML = item.vidUrl ? `
+                    <video class="news-media-vid" controls controlsList="nodownload" playsinline preload="metadata">
+                        <source src="${item.vidUrl}" type="video/mp4">
+                        مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                    </video>` : '';
+
                 container.innerHTML += `
                     <div class="news-item">
                         <div class="news-header">
                             <span class="n-title">${item.title}</span>
                             <span class="n-date">${item.date}</span>
                         </div>
-                        <p class="news-body">${item.text}</p>
+                        <p style="color:var(--text-muted); white-space:pre-line;">${item.text}</p>
+                        ${imgHTML}
+                        ${vidHTML}
                         ${btn}
                     </div>`;
             });
         }
 
-        // --- پاپ‌آپ ---
+        // --- بزرگنمایی عکس ---
+        function openImg(src) {
+            document.getElementById('fullImg').src = src;
+            document.getElementById('imgViewer').classList.add('active');
+        }
+        function closeImg() {
+            document.getElementById('imgViewer').classList.remove('active');
+        }
+
+        // --- پاپ‌آپ متنی ---
         const pData = {
             'jahan': {t:"🌍 جهان ماجراجویی", d:"بزرگ‌ترین پروژه من با زبان سی‌شارپ. یک دنیای وسیع که هر روز ویژگی‌های جدیدی به آن اضافه می‌شود."},
             'ramz': {t:"🔐 سایت رمزگذاری", d:"یک ابزار تحت وب تمیز و کاربردی برای رمزنگاری پیام‌ها جهت امنیت بیشتر."},
