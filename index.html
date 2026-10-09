@@ -5,17 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آرتام حمیدی | سایت شخصی</title>
     <style>
-        /* ===== وارد کردن فونت وزیرمتن ===== */
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
 
-        /* ===== ریست تنظیمات اوليه ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ===== متغیرهای رنگ‌بندی تم تاریک ===== */
         :root {
             --purple: #7c5cfc;
             --purple-dark: #5a3fd6;
@@ -37,17 +30,10 @@
             overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--purple);
-            transition: all 0.3s ease;
-        }
+        a { text-decoration: none; color: var(--purple); transition: 0.3s; }
+        a:hover { color: var(--green); }
 
-        a:hover {
-            color: var(--green);
-        }
-
-        /* ===== بخش هدر اصلی سایت ===== */
+        /* ===== هدر با افکت درخشان ===== */
         header {
             background: linear-gradient(160deg, #0a0a14 0%, #12082a 50%, #0a1a10 100%);
             padding: 70px 20px 50px;
@@ -60,653 +46,78 @@
         header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(124,92,252,0.12) 0%, transparent 50%),
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(124,92,252,0.1) 0%, transparent 50%),
                         radial-gradient(circle at 70% 50%, rgba(0,230,118,0.08) 0%, transparent 50%);
-            animation: glowAnimation 8s ease-in-out infinite alternate;
+            animation: glow 8s ease-in-out infinite alternate;
         }
 
-        @keyframes glowAnimation {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, -20px); }
-        }
+        @keyframes glow { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, -20px); } }
 
-        .profile-avatar {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 20px;
-            position: relative;
-            z-index: 1;
-        }
-
+        .profile-avatar { width: 160px; height: 160px; margin: 0 auto 20px; position: relative; z-index: 1; }
         .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
             border: 3px solid transparent;
             background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
                         linear-gradient(135deg, var(--purple), var(--green)) border-box;
-            box-shadow: 0 0 25px rgba(124,92,252,0.4);
+            box-shadow: 0 0 25px rgba(124,92,252,0.3);
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: #fff;
-            position: relative;
-            z-index: 1;
-        }
+        header h1 { font-size: 2.8rem; font-weight: 900; color: #fff; position: relative; z-index: 1; }
+        header h1 span { background: linear-gradient(135deg, var(--purple), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header .subtitle { font-size: 1.1rem; color: var(--text-light); margin-top: 10px; position: relative; z-index: 1; }
+        header .location { font-size: 0.95rem; color: var(--green); margin-top: 8px; position: relative; z-index: 1; font-weight: 500; }
 
-        header h1 .name {
-            background: linear-gradient(135deg, var(--purple), var(--green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .tags { margin-top: 20px; position: relative; z-index: 1; }
+        .tags span { display: inline-block; padding: 5px 15px; margin: 4px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        .tag-purple { background: rgba(124,92,252,0.15); color: var(--purple); border: 1px solid rgba(124,92,252,0.3); }
+        .tag-green { background: rgba(0,230,118,0.1); color: var(--green); border: 1px solid rgba(0,230,118,0.25); }
 
-        header .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-top: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header .location {
-            font-size: 0.95rem;
-            color: var(--green);
-            margin-top: 8px;
-            position: relative;
-            z-index: 1;
-            font-weight: 500;
-        }
-
-        header .tags {
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header .tags span {
-            display: inline-block;
-            padding: 5px 16px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .tag-purple {
-            background: rgba(124,92,252,0.15);
-            color: var(--purple);
-            border: 1px solid rgba(124,92,252,0.3);
-        }
-
-        .tag-green {
-            background: rgba(0,230,118,0.1);
-            color: var(--green);
-            border: 1px solid rgba(0,230,118,0.25);
-        }
-
-        /* ===== منوی ناوبری تب‌ها ===== */
+        /* ===== ناوبری ===== */
         nav {
-            background: rgba(15, 15, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 14px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+            padding: 14px; text-align: center; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border); display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
         }
+        nav button { background: none; border: 2px solid transparent; color: var(--text-light); font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; padding: 8px 22px; border-radius: 10px; transition: 0.3s; }
+        nav button:hover { color: #fff; background: rgba(124,92,252,0.1); }
+        nav button.active { color: var(--green); border-color: var(--green); background: rgba(0,230,118,0.1); }
 
-        nav button {
-            background: none;
-            border: 2px solid transparent;
-            color: var(--text-light);
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 8px 22px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
+        /* ===== صفحات ===== */
+        .page-content { display: none; max-width: 950px; margin: 40px auto; padding: 0 20px; animation: fadeIn 0.4s; }
+        .page-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        nav button:hover {
-            color: #fff;
-            background: rgba(124,92,252,0.15);
-        }
+        section { margin-bottom: 50px; }
+        section h2 { font-size: 1.7rem; font-weight: 900; margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: var(--purple); border-right: 4px solid var(--purple); padding-right: 15px; }
+        .h2-green { color: var(--green); border-right-color: var(--green); }
 
-        nav button.active {
-            color: var(--green);
-            border-color: var(--green);
-            background: rgba(0,230,118,0.1);
-        }
+        /* ===== کارت‌ها ===== */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .grid-small { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .card { background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s; }
+        .card.interactive { cursor: pointer; }
+        .card.interactive:hover { border-color: var(--green); transform: translateY(-4px); }
+        .card .icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .card h3 { color: #fff; font-size: 1.15rem; margin-bottom: 10px; }
 
-        /* ===== ساختار تب‌ها و صفحات ===== */
-        .page-content {
-            display: none;
-            max-width: 950px;
-            margin: 40px auto;
-            padding: 0 20px;
-            animation: fadeInPage 0.4s ease-in-out;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            margin-bottom: 50px;
-        }
-
-        section h2 {
-            font-size: 1.7rem;
-            font-weight: 900;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--purple);
-        }
-
-        section h2 .line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to left, transparent, var(--border));
-        }
-
-        .h2-green {
-            color: var(--green);
-        }
-
-        /* ===== درباره من ===== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .about-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: border-color 0.3s ease;
-        }
-
-        .about-card:hover {
-            border-color: var(--purple);
-        }
-
-        .about-card.full {
-            grid-column: 1 / -1;
-        }
-
-        .about-card h3 {
-            color: #fff;
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-        }
-
-        .about-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* ===== کارت‌های پروژه و نمونه‌کارها ===== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 22px;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--purple);
-        }
-
-        .project-card.featured {
-            border-color: var(--green);
-            box-shadow: 0 0 30px rgba(0,230,118,0.08);
-        }
-
-        .project-card .thumb {
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
-        }
-
-        .project-card.featured .thumb {
-            background: linear-gradient(135deg, #0a1a10, #12082a);
-        }
-
-        .project-card .info {
-            padding: 22px;
-        }
-
-        .project-card h3 {
-            color: #fff;
-            margin-bottom: 8px;
-            font-size: 1.05rem;
-        }
-
-        .project-card p {
-            color: var(--text-light);
-            font-size: 0.88rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
-        .badge-main {
-            background: linear-gradient(135deg, var(--green-dark), var(--green));
-            color: #000;
-        }
-
-        .badge-active {
-            background: rgba(124,92,252,0.2);
-            color: var(--purple);
-            border: 1px solid rgba(124,92,252,0.3);
-        }
-
-        .badge-archive {
-            background: rgba(255,255,255,0.05);
-            color: #666;
-            border: 1px solid #333;
-        }
-
-        .click-hint {
-            display: block;
-            font-size: 0.78rem;
-            color: var(--green);
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* ===== مهارت‌ها ===== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 18px;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            padding: 28px 20px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--purple), var(--green));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--purple);
-            background: var(--bg-card-hover);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        .skill-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-
-        .skill-card h3 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-
-        .skill-card p {
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
-
-        .lang-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .lang-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 15px 25px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-item:hover {
-            border-color: var(--green);
-            background: var(--bg-card-hover);
-        }
-
-        .lang-item .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        /* ===== رمان‌ها و نوشته‌ها ===== */
-        .novels-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 18px;
-        }
-
-        .novel-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .novel-card:hover {
-            border-color: var(--purple);
-            background: var(--bg-card-hover);
-        }
-
-        .novel-card .book-icon {
-            font-size: 2.5rem;
-            flex-shrink: 0;
-        }
-
-        .novel-card h3 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 4px;
-        }
-
-        .novel-card p {
-            color: var(--text-light);
-            font-size: 0.82rem;
-        }
-
-        /* ===== تماس ===== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            border-color: var(--purple);
-            transform: translateY(-4px);
-        }
-
-        .contact-card .c-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .contact-card h3 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-
-        .contact-card a {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* ===== صفحه اخبار ===== */
-        .news-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .news-title {
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .news-date {
-            color: var(--green);
-            font-size: 0.8rem;
-            background: rgba(0,230,118,0.1);
-            padding: 3px 10px;
-            border-radius: 10px;
-            float: left;
-        }
-
-        .news-body {
-            margin: 15px 0;
-            color: var(--text-light);
-            line-height: 1.8;
-            white-space: pre-line;
-        }
-
-        .apk-download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
-            color: #000 !important;
-            padding: 12px 22px;
-            border-radius: 10px;
-            font-weight: 900;
-            margin-top: 10px;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(0,230,118,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .apk-download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,230,118,0.4);
-        }
+        /* ===== اخبار و دانلود ===== */
+        .news-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 25px; }
+        .apk-download-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--green), var(--green-dark)); color: #000 !important; padding: 12px 25px; border-radius: 12px; font-weight: 900; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,230,118,0.2); }
 
         /* ===== فرم پشتیبانی ===== */
-        .form-group {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 25px;
-            border-radius: 14px;
-            margin-bottom: 30px;
-        }
+        .form-container { background: var(--bg-card); border: 1px solid var(--border); padding: 30px; border-radius: 16px; }
+        input, select, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: #0a0a10; color: #fff; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; }
+        .btn-send { width: 100%; padding: 15px; background: var(--purple); color: #fff; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .btn-send:hover { background: var(--purple-dark); transform: translateY(-2px); }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            background: #0a0a10;
-            color: #fff;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: inherit;
-        }
+        /* ===== پاپ‌آپ ===== */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--bg-card); width: 90%; max-width: 550px; border-radius: 20px; border: 1px solid var(--purple); padding: 35px; position: relative; }
+        .close-btn { position: absolute; top: 15px; left: 20px; font-size: 1.6rem; color: #fff; cursor: pointer; border: none; background: none; }
 
-        .btn-send {
-            width: 100%;
-            padding: 12px;
-            background: var(--purple);
-            color: #fff;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .btn-send:hover {
-            background: var(--purple-dark);
-        }
-
-        /* ===== کارت تیکت‌های پشتیبانی ===== */
-        .ticket-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .ticket-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #1a1a2e;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        .ticket-user {
-            color: var(--purple);
-            font-weight: bold;
-        }
-
-        .ticket-reply {
-            background: rgba(0,230,118,0.08);
-            border-right: 3px solid var(--green);
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 12px;
-            color: #e0e0e0;
-        }
-
-        .ticket-reply-title {
-            color: var(--green);
-            font-weight: bold;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-        }
-
-        /* ===== پاپ‌آپ (Modal) ===== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            width: 90%;
-            max-width: 550px;
-            border-radius: 16px;
-            border: 1px solid var(--purple);
-            padding: 30px;
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 12px;
-            left: 18px;
-            font-size: 1.4rem;
-            color: #fff;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        /* ===== فوتر ===== */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #444;
-            border-top: 1px solid var(--border);
-            margin-top: 60px;
-            font-size: 0.9rem;
-        }
-
-        footer .heart {
-            color: var(--purple);
-        }
-
-        /* ===== ریسپانسيو موبایل ===== */
-        @media (max-width: 700px) {
-            header h1 { font-size: 2rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr 1fr; }
-            nav button { padding: 6px 12px; font-size: 0.85rem; }
-        }
+        footer { text-align: center; padding: 40px 20px; color: #555; border-top: 1px solid var(--border); margin-top: 60px; }
     </style>
 </head>
 <body>
@@ -714,17 +125,16 @@
     <!-- ===== هدر ===== -->
     <header>
         <div class="profile-avatar">
-            <img id="mainImg" src="profile.jpg" alt="آرتام حمیدی" onerror="fixMyImage(this)">
+            <img id="mainImg" src="profile.jpg" alt="آرتام حمیدی" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Artam'">
         </div>
-        <h1>سلام، من <span class="name">آرتام حمیدی</span> هستم 👋</h1>
-        <p class="subtitle">برنامه‌نویس | نویسنده | تولیدکننده محتوا | سازنده‌ی جهان ماجراجویی</p>
+        <h1>سلام، من <span>آرتام حمیدی</span> هستم</h1>
+        <p class="subtitle">برنامه‌نویس C# | نویسنده رمان | سازنده‌ی جهان ماجراجویی</p>
         <p class="location">📍 ایران، استان یزد، شهر یزد</p>
 
         <div class="tags">
-            <span class="tag-purple">💻 توسعه‌دهنده C#</span>
+            <span class="tag-purple">💻 توسعه‌دهنده سی‌شارپ</span>
             <span class="tag-green">🌍 جهان ماجراجویی</span>
             <span class="tag-purple">📖 رمان‌نویس</span>
-            <span class="tag-green">🤖 هوش مصنوعی</span>
         </div>
     </header>
 
@@ -732,269 +142,124 @@
     <nav>
         <button id="tab-home" class="active" onclick="showTab('home')">🏠 صفحه اصلی</button>
         <button id="tab-news" onclick="showTab('news')">🗞️ اخبار و دانلود بازی</button>
-        <button id="tab-support" onclick="showTab('support')">🎧 پشتیبانی و پاسخ‌ها</button>
+        <button id="tab-support" onclick="showTab('support')">🎧 پشتیبانی و تماس</button>
     </nav>
 
-    <!-- ========================================== -->
-    <!-- ================ صفحه اصلی ================ -->
-    <!-- ========================================== -->
+    <!-- ================= صفحه اصلی ================= -->
     <div id="page-home" class="page-content active">
         
-        <!-- درباره من -->
         <section>
-            <h2 class="h2-purple">درباره من <span class="line"></span></h2>
-            <div class="about-grid">
-                <div class="about-card full">
-                    <h3>🧑‍💻 مسیر من</h3>
-                    <p>
-                        من آرتام حمیدی، متولد و ساکن یزد هستم. حدود ۲ ساله که توی فضای مجازی و شبکه‌های اجتماعی
-                        فعالیت مستمر دارم. از تولید محتوای گیمینگ در ماینکرفت تا راه‌اندازی کانال‌های تلگرامی (از جمله کانال دانستنی که تا ۴۰۰ عضو رشد کرد)،
-                        تجربه‌های عالی به دست آوردم. در حال حاضر تمام تمرکز و توان خودم رو روی توسعه پروژه
-                        بزرگ <strong>«جهان ماجراجویی»</strong> گذاشتم که با سرعت بالا در حال پیشرفته.
-                    </p>
-                </div>
-                <div class="about-card">
-                    <h3>📖 قلم و داستان</h3>
-                    <p>
-                        رمان‌نویسی بخشی از روح منه. با خلق رمان‌هایی مثل «رمان گای» و «صد سال فرصت»،
-                        علاقم به جهان‌سازی و خلق شخصیت‌ها رو نشان دادم و از این هنر در بازی‌سازی هم استفاده می‌کنم.
-                    </p>
-                </div>
-                <div class="about-card">
-                    <h3>🎯 رویای بزرگ</h3>
-                    <p>
-                        ترکیب هنر رمان‌نویسی با الگوریتم‌های برنامه‌نویسی تا بتونم نرم‌افزارها و بازی‌هایی
-                        بسام که تا حالا کسی نمونه‌ش رو ندیده.
-                    </p>
-                </div>
+            <h2>درباره من</h2>
+            <div class="card">
+                <p>من آرتام حمیدی هستم، حدود ۲ ساله که در فضای مجازی فعالیت دارم. از مدیریت کانال دانستنی تلگرام (با ۴۰۰ عضو) تا تولید محتوای ماینکرفت، مسیر پر چالشی رو طی کردم. الان تمام تمرکزم روی برنامه‌نویسی پروژه بزرگ <strong>«جهان ماجراجویی»</strong> هست و عاشق نوشتن داستان‌های تخیلی هستم.</p>
             </div>
         </section>
 
-        <!-- نمونه‌کارها -->
         <section>
-            <h2 class="h2-green">نمونه‌کارها <span class="line"></span></h2>
-            <p style="color:var(--text-light); font-size:0.88rem; margin-bottom:15px;">💡 روی هر کدام کلیک کنید تا توضیحات کامل باز شود:</p>
-
-            <div class="projects-grid">
-
-                <div class="project-card featured" onclick="openModal('jahan')">
-                    <div class="thumb">🌍</div>
-                    <div class="info">
-                        <h3>جهان ماجراجویی</h3>
-                        <p>پروژه‌ی اصلی – نرم‌افزار/بازی با توسعه بسیار سریع</p>
-                        <span class="badge badge-main">🔥 پروژه اصلی</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
+            <h2 class="h2-green">نمونه‌کارها (کلیک کنید)</h2>
+            <div class="grid">
+                <div class="card interactive" onclick="openModal('jahan')">
+                    <div class="icon">🌍</div>
+                    <h3>جهان ماجراجویی</h3>
+                    <p>پروژه اصلی و در حال توسعه با سی‌شارپ.</p>
                 </div>
-
-                <div class="project-card" onclick="openModal('ramz')">
-                    <div class="thumb">🔐</div>
-                    <div class="info">
-                        <h3>سایت رمزگذاری</h3>
-                        <p>ابزار امنیت آنلاین برای رمزنگاری سریع متن</p>
-                        <span class="badge badge-active">فعال</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
+                <div class="card interactive" onclick="openModal('ramz')">
+                    <div class="icon">🔐</div>
+                    <h3>سایت رمزگذاری</h3>
+                    <p>ابزار امنیت آنلاین برای رمزنگاری متون.</p>
                 </div>
-
-                <div class="project-card" onclick="openModal('ai')">
-                    <div class="thumb">🤖</div>
-                    <div class="info">
-                        <h3>هوش مصنوعی شخصی</h3>
-                        <p>دستیار هوشمند و شخصی‌سازی‌شده</p>
-                        <span class="badge badge-active">فعال</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openModal('mc')">
-                    <div class="thumb">⛏️</div>
-                    <div class="info">
-                        <h3>محتوای ماینکرفت</h3>
-                        <p>تولید محتوا و پروژه‌های مربوط به بازی ماینکرفت</p>
-                        <span class="badge badge-active">فعال</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openModal('gun')">
-                    <div class="thumb">🔫</div>
-                    <div class="info">
-                        <h3>پروژه تفنگ‌بازی</h3>
-                        <p>بازی آنلاین / آفلاین تیراندازی در حال تست</p>
-                        <span class="badge badge-active">فعال</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openModal('telegram')">
-                    <div class="thumb">📚</div>
-                    <div class="info">
-                        <h3>کانال دانستنی تلگرام</h3>
-                        <p>رسیدن به ۴۰۰ عضو (تجربه موفق ساخت اجتماع)</p>
-                        <span class="badge badge-archive">آرشیو</span>
-                        <span class="click-hint">👈 برای توضیحات کلیک کنید</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- مهارت‌ها -->
-        <section>
-            <h2 class="h2-purple">مهارت‌ها <span class="line"></span></h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="icon">💻</div>
-                    <h3>برنامه‌نویسی</h3>
-                    <p>توسعه نرم‌افزار و ابزارها</p>
-                </div>
-                <div class="skill-card">
-                    <div class="icon">📖</div>
-                    <h3>رمان‌نویسی</h3>
-                    <p>داستان‌سرایی و جهان‌سازی</p>
-                </div>
-                <div class="skill-card">
-                    <div class="icon">🎬</div>
-                    <h3>تولید محتوا</h3>
-                    <p>یوتیوب و شبکه‌های اجتماعی</p>
-                </div>
-                <div class="skill-card">
+                <div class="card interactive" onclick="openModal('ai')">
                     <div class="icon">🤖</div>
                     <h3>هوش مصنوعی</h3>
-                    <p>کاربرد و کدنویسی با AI</p>
+                    <p>دستیار هوشمند و شخصی‌سازی شده.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="icon">🔧</div>
-                    <h3>سخت‌افزار</h3>
-                    <p>آشنایی پایه و قطعه‌شناسی</p>
+                <div class="card interactive" onclick="openModal('mc')">
+                    <div class="icon">⛏️</div>
+                    <h3>پروژه‌های ماینکرفت</h3>
+                    <p>تولید محتوا و گیم‌پلی حرفه‌ای.</p>
+                </div>
+                <div class="card interactive" onclick="openModal('gun')">
+                    <div class="icon">🔫</div>
+                    <h3>بازی تفنگی</h3>
+                    <p>پروژه بازی تیراندازی اول شخص.</p>
+                </div>
+                <div class="card interactive" onclick="openModal('tel')">
+                    <div class="icon">📚</div>
+                    <h3>کانال دانستنی</h3>
+                    <p>تجربه رشد تا ۴۰۰ عضو در تلگرام.</p>
                 </div>
             </div>
+        </section>
 
-            <h3 style="color:#fff; margin-top:35px; margin-bottom:10px; font-size:1rem;">زبان‌های برنامه‌نویسی</h3>
+        <section>
+            <h2>مهارت‌ها و زبان‌ها</h2>
+            <div class="grid-small">
+                <div class="card" style="text-align:center;"><div class="icon">💻</div><h3>برنامه‌نویسی</h3></div>
+                <div class="card" style="text-align:center;"><div class="icon">📖</div><h3>رمان‌نویسی</h3></div>
+                <div class="card" style="text-align:center;"><div class="icon">🔧</div><h3>سخت‌افزار</h3></div>
+            </div>
             <div class="lang-list">
-                <div class="lang-item">
-                    <div class="dot" style="background:var(--purple);"></div>
-                    <div>
-                        <strong style="color:#fff;">#C (سی‌شارپ)</strong><br>
-                        <small style="color:var(--text-light);">زبان اصلی توسعه</small>
-                    </div>
-                </div>
-                <div class="lang-item">
-                    <div class="dot" style="background:#ffd600;"></div>
-                    <div>
-                        <strong style="color:#fff;">JavaScript / Web</strong><br>
-                        <small style="color:var(--text-light);">با کمک هوش مصنوعی</small>
-                    </div>
-                </div>
-                <div class="lang-item">
-                    <div class="dot" style="background:var(--green);"></div>
-                    <div>
-                        <strong style="color:#fff;">HTML & CSS</strong><br>
-                        <small style="color:var(--text-light);">طراحی و توسعه وب</small>
-                    </div>
-                </div>
+                <div class="lang-item"><div class="dot" style="background:var(--purple);"></div><strong>C# (زبان اصلی)</strong></div>
+                <div class="lang-item"><div class="dot" style="background:#ffd600;"></div><strong>JS (با کمک AI)</strong></div>
+                <div class="lang-item"><div class="dot" style="background:var(--green);"></div><strong>HTML & CSS</strong></div>
             </div>
         </section>
 
-        <!-- رمان‌ها -->
         <section>
-            <h2 class="h2-green">رمان‌ها و نوشته‌ها <span class="line"></span></h2>
-            <div class="novels-list">
-                <div class="novel-card">
-                    <div class="book-icon">📕</div>
-                    <div>
-                        <h3>رمان گای</h3>
-                        <p>داستانی جذاب از اولین پروژه‌های رمان‌نویسی</p>
-                    </div>
-                </div>
-                <div class="novel-card">
-                    <div class="book-icon">📗</div>
-                    <div>
-                        <h3>صد سال فرصت</h3>
-                        <p>روایتی عمیق درباره زمان، شانس و تصمیمات زندگی</p>
-                    </div>
-                </div>
-                <div class="novel-card">
-                    <div class="book-icon">📓</div>
-                    <div>
-                        <h3>ایده‌های نو...</h3>
-                        <p>چندین سناریو و داستان کوتاه در مرحله نگارش</p>
-                    </div>
-                </div>
+            <h2 class="h2-green">رمان‌های من</h2>
+            <div class="grid">
+                <div class="card"><div class="icon">📕</div><h3>رمان گای</h3><p>داستانی متفاوت از دنیای خیال.</p></div>
+                <div class="card"><div class="icon">📗</div><h3>صد سال فرصت</h3><p>روایتی عمیق از زمان و انتخاب‌ها.</p></div>
             </div>
         </section>
 
-        <!-- تماس -->
         <section>
-            <h2 class="h2-purple">راه‌های ارتباطی <span class="line"></span></h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="c-icon">🔴</div>
-                    <h3>کانال یوتیوب</h3>
-                    <a href="https://youtube.com/@artamix-c4n?si=KYUaxabnh3JvSkRy" target="_blank">@artamix-c4n</a>
-                </div>
-                <div class="contact-card">
-                    <div class="c-icon">✈️</div>
-                    <h3>تلگرام</h3>
-                    <a href="https://t.me/AaPi8" target="_blank">@AaPi8</a>
-                </div>
-                <div class="contact-card">
-                    <div class="c-icon">💬</div>
-                    <h3>ایتا</h3>
-                    <a href="https://eitaa.com/ArtamA1" target="_blank">@ArtamA1</a>
-                </div>
-                <div class="contact-card">
-                    <div class="c-icon">📧</div>
-                    <h3>ایمیل اصلی</h3>
-                    <a href="mailto:artamhamidi@gmail.com">artamhamidi@gmail.com</a>
-                </div>
+            <h2>ارتباط با من</h2>
+            <div class="grid-small">
+                <div class="card" style="text-align:center;"><h3>🔴 یوتیوب</h3><a href="https://youtube.com/@artamix-c4n?si=KYUaxabnh3JvSkRy" target="_blank">مشاهده کانال</a></div>
+                <div class="card" style="text-align:center;"><h3>✈️ تلگرام</h3><a href="https://t.me/AaPi8" target="_blank">AaPi8@</a></div>
+                <div class="card" style="text-align:center;"><h3>💬 ایتا</h3><a href="https://eitaa.com/ArtamA1" target="_blank">ArtamA1@</a></div>
             </div>
         </section>
-
     </div>
 
-    <!-- ========================================== -->
-    <!-- ================= صفحه اخبار =============== -->
-    <!-- ========================================== -->
+    <!-- ================= صفحه اخبار ================= -->
     <div id="page-news" class="page-content">
         <section>
-            <h2 class="h2-green">اخبار، آپدیت‌ها و لینک‌های دانلود <span class="line"></span></h2>
+            <h2 class="h2-green">اخبار، آپدیت‌ها و دانلود بازی</h2>
             <div id="newsList"></div>
 
-            <!-- پنل ادمین -->
-            <div style="margin-top: 50px; text-align: center; border: 1px dashed var(--purple); padding: 20px; border-radius: 12px;">
-                <button onclick="checkAdmin()" style="background:none; border:none; color:var(--purple); cursor:pointer; font-size:1rem; font-weight:bold; font-family:inherit;">🔒 پنل انتشار خبر و فایل جدید (مخصوص آرتام)</button>
-                <div id="adminForm" style="display:none; margin-top:20px; text-align:right;">
-                    <input type="text" id="nTitle" placeholder="عنوان خبر (مثلاً: دانلود نسخه ۱.۰ جهان ماجراجویی)">
-                    <textarea id="nText" rows="4" placeholder="توضیحات خبر یا آپدیت..."></textarea>
-                    <input type="text" id="nApk" placeholder="اسم فایل APK یا لینک دانلود (مثلاً: jahan.apk)">
-                    <button class="btn-send" onclick="postNews()">🚀 انتشار در بخش اخبار</button>
+            <div style="text-align: center; margin-top: 40px;">
+                <button onclick="checkAdmin()" style="color:var(--purple); background:none; border:none; cursor:pointer; font-weight:bold;">🔒 پنل مدیریت اخبار (مخصوص آرتام)</button>
+                <div id="adminForm" style="display:none; margin-top:20px; text-align:right;" class="form-container">
+                    <input type="text" id="nTitle" placeholder="عنوان خبر">
+                    <textarea id="nText" rows="3" placeholder="توضیحات خبر..."></textarea>
+                    <input type="text" id="nApk" placeholder="اسم فایل APK (مثلاً: jahan.apk)">
+                    <button class="btn-send" onclick="postNews()">🚀 انتشار در سایت</button>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ========================================== -->
-    <!-- ============= صفحه پشتیبانی ================= -->
-    <!-- ========================================== -->
+    <!-- ================= صفحه پشتیبانی ================= -->
     <div id="page-support" class="page-content">
         <section>
-            <h2 class="h2-purple">ارسال گزارش باگ یا پیشنهاد <span class="line"></span></h2>
-            <div class="form-group">
-                <p style="margin-bottom:15px; color:#aaa; font-size:0.9rem;">پیام خود را بنویسید. آرتام از همین صفحه به شما پاسخ خواهد داد:</p>
-                <input type="text" id="sName" placeholder="نام یا نام‌مستعار شما">
-                <select id="sType">
-                    <option value="🐞 گزارش باگ">گزارش باگ در بازی</option>
-                    <option value="💡 پیشنهاد">پیشنهاد و ایده جدید</option>
-                    <option value="💬 نظر عمومی">نظر عمومی</option>
-                </select>
-                <textarea id="sMsg" rows="4" placeholder="متن پیام شما..."></textarea>
-                <button id="sBtn" class="btn-send" onclick="sendTicket()">🚀 ارسال پیام برای آرتام</button>
+            <h2>ارسال پیام مستقیم برای آرتام</h2>
+            <div class="form-container">
+                <p style="margin-bottom: 20px; color: #aaa;">پیام شما مستقیم به ایمیل شخصی من ارسال می‌شود و به شما پاسخ خواهم داد:</p>
+                
+                <form action="https://formspree.io/f/xnpjdepz" method="POST">
+                    <input type="text" name="name" placeholder="نام شما" required>
+                    <input type="email" name="email" placeholder="ایمیل شما (برای پاسخ من)" required>
+                    <select name="type">
+                        <option value="گزارش باگ">🐞 گزارش باگ در بازی</option>
+                        <option value="پیشنهاد">💡 پیشنهاد ویژگی جدید</option>
+                        <option value="سایر">💬 پیام عمومی</option>
+                    </select>
+                    <textarea name="message" rows="5" placeholder="متن پیام شما..." required></textarea>
+                    <button type="submit" class="btn-send">🚀 ارسال ایمیل برای آرتام</button>
+                </form>
             </div>
-
-            <h2 class="h2-green" style="margin-top:40px;">💬 پیام‌ها و پاسخ‌های آرتام <span class="line"></span></h2>
-            <div id="ticketsContainer">در حال بارگذاری پیام‌ها...</div>
         </section>
     </div>
 
@@ -1002,198 +267,61 @@
     <div class="modal-overlay" id="myModal" onclick="closeM(event)">
         <div class="modal-content">
             <button class="close-btn" onclick="closeMBtn()">✖</button>
-            <h3 id="mTitle" style="color:var(--green); margin-bottom:15px; font-size:1.4rem;"></h3>
-            <p id="mDesc" style="color:#ccc; line-height:2; font-size:1rem;"></p>
+            <h3 id="mTitle" style="color:var(--green); margin-bottom:15px;"></h3>
+            <p id="mDesc" style="color:#ccc; line-height:2;"></p>
         </div>
     </div>
 
-    <footer>طراحی و توسعه با <span class="heart">💜</span> توسط آرتام حمیدی | ۲۰۲۵</footer>
+    <footer>طراحی و توسعه با 💜 توسط آرتام حمیدی | ۲۰۲۵</footer>
 
-    <!-- ===== اسکریپت‌ها ===== -->
     <script>
-        // آدرس دیتابیس ابری
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_tickets_v105";
-        const PROXY = "https://api.codetabs.com/v1/proxy?quest=";
-
-        // ۱. عکس هوشمند
-        let tries = 0;
-        function fixMyImage(img) {
-            tries++;
-            if(tries === 1) img.src = "profile.png";
-            else if(tries === 2) img.src = "profile.jpeg";
-            else if(tries === 3) img.src = "profile.JPG";
-            else { img.src = "https://api.dicebear.com/7.x/bottts/svg?seed=Artam"; img.onerror = null; }
-        }
-
-        // ۲. ناوبری
-        function showTab(tabId) {
+        function showTab(t) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
-            document.getElementById('page-' + tabId).classList.add('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
-            if(tabId === 'support') loadTickets();
+            document.getElementById('page-'+t).classList.add('active');
+            document.getElementById('tab-'+t).classList.add('active');
         }
 
-        // ۳. مدیریت اخبار
+        // سیستم اخبار محلی
         const ADMIN_PASS = "123123آرتام آر آر آر آرت";
-        function checkAdmin() {
-            if(prompt("رمز مدیر را وارد کنید:") === ADMIN_PASS) document.getElementById('adminForm').style.display = 'block';
-            else alert("❌ رمز اشتباه است!");
-        }
-
+        function checkAdmin() { if(prompt("رمز ادمین:") === ADMIN_PASS) document.getElementById('adminForm').style.display='block'; else alert("❌ رمز اشتباه!"); }
+        
         function postNews() {
             let title = document.getElementById('nTitle').value;
             let text = document.getElementById('nText').value;
             let apk = document.getElementById('nApk').value;
-            if(!title || !text) return alert("عنوان و متن الزامی است!");
-            let date = new Date().toLocaleDateString('fa-IR');
-            let allNews = JSON.parse(localStorage.getItem('artam_news') || '[]');
-            allNews.unshift({ title, text, apk, date });
-            localStorage.setItem('artam_news', JSON.stringify(allNews));
+            if(!title || !text) return alert("فیلدها را پر کنید!");
+            let all = JSON.parse(localStorage.getItem('artam_news') || '[]');
+            all.unshift({ title, text, apk, date: new Date().toLocaleDateString('fa-IR') });
+            localStorage.setItem('artam_news', JSON.stringify(all));
             location.reload();
         }
 
         function loadNews() {
-            let allNews = JSON.parse(localStorage.getItem('artam_news') || '[]');
+            let all = JSON.parse(localStorage.getItem('artam_news') || '[]');
             let container = document.getElementById('newsList');
-            if(allNews.length === 0) {
-                container.innerHTML = `
-                    <div class="news-card">
-                        <div style="overflow:hidden;"><span class="news-title">🚀 انتشار بازی جهان ماجراجویی (نسخه اول)</span><span class="news-date">۱۴۰۳/۱۲/۰۵</span></div>
-                        <div class="news-body">سلام به همه! اولین نسخه از بازی جهان ماجراجویی منتشر شد. فایل APK را می‌توانید دانلود کنید.</div>
-                        <a href="jahan.apk" class="apk-download-btn" download>📥 دانلود مستقیم فایل APK</a>
-                    </div>`;
-                return;
+            if(all.length===0) {
+                container.innerHTML = "<div class='news-card'>🚀 هنوز خبری منتشر نشده است. اولین خبر به زودی قرار می‌گیرد.</div>";
             }
-            container.innerHTML = "";
-            allNews.forEach(item => {
-                let dwnBtn = item.apk ? `<br><a href="${item.apk}" class="apk-download-btn" download>📥 دانلود فایل APK برنامه</a>` : '';
-                container.innerHTML += `<div class="news-card"><div style="overflow:hidden;"><span class="news-title">${item.title}</span><span class="news-date">${item.date}</span></div><div class="news-body">${item.text}</div>${dwnBtn}</div>`;
+            all.forEach(item => {
+                let dwn = item.apk ? `<br><a href="${item.apk}" class="apk-download-btn" download>📥 دانلود مستقیم فایل APK</a>` : '';
+                container.innerHTML += `<div class="news-card"><span class="news-date">${item.date}</span><h3 class="news-title">${item.title}</h3><p class="news-body">${item.text}</p>${dwn}</div>`;
             });
         }
 
-        // ۴. سیستم پیام‌ها و پشتیبانی (ضد فیلتر)
-        async function sendTicket() {
-            let name = document.getElementById('sName').value || "ناشناس";
-            let type = document.getElementById('sType').value;
-            let msg = document.getElementById('sMsg').value;
-            let btn = document.getElementById('sBtn');
-
-            if(!msg) return alert("❌ لطفاً متن پیام را بنویسید!");
-
-            btn.disabled = true;
-            btn.innerText = "⏳ در حال ارسال پیام...";
-
-            try {
-                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
-                let tickets = [];
-                if(res.ok) {
-                    let text = await res.text();
-                    try { tickets = JSON.parse(text); } catch(err) { tickets = []; }
-                }
-
-                if(!Array.isArray(tickets)) tickets = [];
-
-                tickets.unshift({
-                    id: Date.now(),
-                    name: name,
-                    type: type,
-                    msg: msg,
-                    date: new Date().toLocaleDateString('fa-IR'),
-                    reply: ""
-                });
-
-                let saveRes = await fetch(PROXY + encodeURIComponent(DB_URL), {
-                    method: 'POST',
-                    body: JSON.stringify(tickets)
-                });
-
-                if(saveRes.ok) {
-                    alert("✅ پیام شما ثبت شد! آرتام به‌زودی پاسخ می‌دهد.");
-                    document.getElementById('sMsg').value = '';
-                    loadTickets();
-                } else {
-                    alert("❌ خطا در ذخیره‌سازی پیام.");
-                }
-            } catch(e) {
-                alert("❌ خطای شبکه در ارسال پیام.");
-            }
-
-            btn.disabled = false;
-            btn.innerText = "🚀 ارسال پیام برای آرتام";
-        }
-
-        async function loadTickets() {
-            let container = document.getElementById('ticketsContainer');
-            try {
-                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
-                if(!res.ok) { container.innerHTML = "<p style='color:#666;'>هنوز پیامی نیست.</p>"; return; }
-                
-                let text = await res.text();
-                let tickets = [];
-                try { tickets = JSON.parse(text); } catch(e) { tickets = []; }
-
-                if(!Array.isArray(tickets) || tickets.length === 0) {
-                    container.innerHTML = "<p style='color:#666;'>هنوز پیامی ثبت نشده است.</p>";
-                    return;
-                }
-
-                container.innerHTML = "";
-                tickets.forEach(item => {
-                    let replyHTML = item.reply 
-                        ? `<div class="ticket-reply"><div class="ticket-reply-title">💬 پاسخ آرتام:</div>${item.reply}</div>` 
-                        : `<div style="font-size:0.8rem; color:#666; margin-top:8px;">⌛ در انتظار پاسخ آرتام...</div>`;
-
-                    container.innerHTML += `
-                        <div class="ticket-card">
-                            <div class="ticket-header">
-                                <span class="ticket-user">👤 ${item.name} (${item.type})</span>
-                                <span>📅 ${item.date}</span>
-                            </div>
-                            <div>${item.msg}</div>
-                            ${replyHTML}
-                        </div>`;
-                });
-            } catch(e) {
-                container.innerHTML = "<p style='color:#666;'>درحال بارگذاری داده‌ها...</p>";
-            }
-        }
-
-        // ۵. پاپ‌آپ‌ها (اطلاعات کامل)
-        const projectData = {
-            'jahan': {
-                title: "🌍 جهان ماجراجویی (پروژه اصلی)",
-                desc: "جهان ماجراجویی بزرگ‌ترین و مهم‌ترین پروژه منه که با زبان C# دارم می‌نویسمش. این پروژه با سرعت خیلی بالا داره پیشرفت می‌کنه و ترکیبی از سیستم‌های پیچیده نرم‌افزاری و ایده‌های داستانی خودمه."
-            },
-            'ramz': {
-                title: "🔐 سایت رمزگذاری",
-                desc: "یه ابزار کاربردی و آنلاین که نوشتم تا بشه متون رو به متون رمزنگاری‌شده غیرقابل‌خواندن تبدیل کرد و دوباره رمزگشایی‌شون کرد."
-            },
-            'ai': {
-                title: "🤖 هوش مصنوعی شخصی",
-                desc: "پروژه‌ای برای ساخت دستیار هوشمند و اختصاصی خودم که توی کارهای روزانه و کدنویسی به من کمک می‌کنه."
-            },
-            'mc': {
-                title: "⛏️ پروژه‌های ماینکرفت",
-                desc: "ساخت پیج و تولید محتوای گیمینگ ماینکرفت که یکی از اولین تجربه‌های جدی من در فضای مجازی بود."
-            },
-            'gun': {
-                title: "🔫 پروژه بازی تفنگی",
-                desc: "یه پروژه بازی تیراندازی/تفنگی که به عنوان نمونه‌کار در حال ساخت و تست بخش‌های مختلفشم."
-            },
-            'telegram': {
-                title: "📚 کانال دانستنی تلگرام",
-                desc: "کانال تلگرامی که درباره مطالب علمی و دانستنی ساختم و تا ۴۰۰ عضو فعال رشد کرد و تجربه عالی توی مدیریت کانال به من داد."
-            }
+        // پاپ‌آپ‌ها
+        const pData = {
+            'jahan': {t:"🌍 جهان ماجراجویی", d:"این بزرگ‌ترین پروژه منه که با زبان سی‌شارپ می‌نویسم. یه بازی/برنامه خیلی بزرگ که تمام ایده‌های رمان‌نویسی و برنامه‌نویسیم رو توش پیاده می‌کنم و هر روز داره پیشرفته‌تر می‌شه."},
+            'ramz': {t:"🔐 سایت رمزگذاری", d:"ابزاری برای امنیت پیام‌ها. می‌تونید متنی رو رمز کنید و فقط کسی که کلید رمز رو داره می‌تونه دوباره اون رو بخونه. کاملاً امن و سریع."},
+            'ai': {t:"🤖 هوش مصنوعی شخصی", d:"دستیار هوشمندی که برای مدیریت کارهای شخصی و کمک در برنامه‌نویسی خودم توسعه دادم و به مرور زمان باهوش‌تر می‌شه."},
+            'mc': {t:"⛏️ پروژه‌های ماینکرفت", d:"تجربه تولید محتوای گیمینگ و ساخت دنیای خلاقانه در ماینکرفت که اولین قدم‌های من در فضای مجازی بود."},
+            'gun': {t:"🔫 بازی تفنگی", d:"یه پروژه بازی تیراندازی اول شخص که مکانیزم‌های شلیک و حرکت رو توش تست می‌کنم."},
+            'tel': {t:"📚 کانال تلگرام", d:"مدیریت و رشد کانال تلگرام تا ۴۰۰ عضو فعال که تجربه فوق‌العاده‌ای در جذب مخاطب به من داد."}
         };
 
-        function openModal(id) {
-            document.getElementById('mTitle').innerText = projectData[id].title;
-            document.getElementById('mDesc').innerText = projectData[id].desc;
-            document.getElementById('myModal').classList.add('active');
-        }
-        function closeM(e) { if(e.target.id === 'myModal') document.getElementById('myModal').classList.remove('active'); }
+        function openModal(id) { document.getElementById('mTitle').innerText = pData[id].t; document.getElementById('mDesc').innerText = pData[id].d; document.getElementById('myModal').classList.add('active'); }
         function closeMBtn() { document.getElementById('myModal').classList.remove('active'); }
+        function closeM(e) { if(e.target.className === 'modal-overlay active') closeMBtn(); }
 
         window.onload = loadNews;
     </script>
