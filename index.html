@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آرتام حمیدی | سایت شخصی</title>
     <style>
+        /* ===== وارد کردن فونت وزیرمتن ===== */
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ===== ریست تنظیمات اوليه ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        /* ===== متغیرهای رنگ‌بندی تم تاریک ===== */
         :root {
             --purple: #7c5cfc;
             --purple-dark: #5a3fd6;
@@ -30,10 +37,17 @@
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: var(--purple); transition: 0.3s; }
-        a:hover { color: var(--green); }
+        a {
+            text-decoration: none;
+            color: var(--purple);
+            transition: all 0.3s ease;
+        }
 
-        /* ===== هدر با افکت درخشان ===== */
+        a:hover {
+            color: var(--green);
+        }
+
+        /* ===== بخش هدر اصلی سایت ===== */
         header {
             background: linear-gradient(160deg, #0a0a14 0%, #12082a 50%, #0a1a10 100%);
             padding: 70px 20px 50px;
@@ -52,10 +66,10 @@
             height: 200%;
             background: radial-gradient(circle at 30% 50%, rgba(124,92,252,0.12) 0%, transparent 50%),
                         radial-gradient(circle at 70% 50%, rgba(0,230,118,0.08) 0%, transparent 50%);
-            animation: glow 8s ease-in-out infinite alternate;
+            animation: glowAnimation 8s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
+        @keyframes glowAnimation {
             0% { transform: translate(0, 0); }
             100% { transform: translate(30px, -20px); }
         }
@@ -91,6 +105,7 @@
             background: linear-gradient(135deg, var(--purple), var(--green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header .subtitle {
@@ -125,10 +140,19 @@
             font-weight: 500;
         }
 
-        .tag-purple { background: rgba(124,92,252,0.15); color: var(--purple); border: 1px solid rgba(124,92,252,0.3); }
-        .tag-green { background: rgba(0,230,118,0.1); color: var(--green); border: 1px solid rgba(0,230,118,0.25); }
+        .tag-purple {
+            background: rgba(124,92,252,0.15);
+            color: var(--purple);
+            border: 1px solid rgba(124,92,252,0.3);
+        }
 
-        /* ===== ناوبری (منوی شناور) ===== */
+        .tag-green {
+            background: rgba(0,230,118,0.1);
+            color: var(--green);
+            border: 1px solid rgba(0,230,118,0.25);
+        }
+
+        /* ===== منوی ناوبری تب‌ها ===== */
         nav {
             background: rgba(15, 15, 26, 0.95);
             backdrop-filter: blur(10px);
@@ -154,33 +178,42 @@
             cursor: pointer;
             padding: 8px 22px;
             border-radius: 10px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
-        nav button:hover { color: #fff; background: rgba(124,92,252,0.15); }
+        nav button:hover {
+            color: #fff;
+            background: rgba(124,92,252,0.15);
+        }
+
         nav button.active {
             color: var(--green);
             border-color: var(--green);
             background: rgba(0,230,118,0.1);
         }
 
-        /* ===== ساختار صفحات ===== */
+        /* ===== ساختار تب‌ها و صفحات ===== */
         .page-content {
             display: none;
             max-width: 950px;
             margin: 40px auto;
             padding: 0 20px;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeInPage 0.4s ease-in-out;
         }
 
-        .page-content.active { display: block; }
+        .page-content.active {
+            display: block;
+        }
 
-        @keyframes fadeIn {
+        @keyframes fadeInPage {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        section { margin-bottom: 50px; }
+        section {
+            margin-bottom: 50px;
+        }
+
         section h2 {
             font-size: 1.7rem;
             font-weight: 900;
@@ -191,75 +224,76 @@
             color: var(--purple);
         }
 
-        section h2 .line { flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--border)); }
-        .h2-green { color: var(--green); }
+        section h2 .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--border));
+        }
+
+        .h2-green {
+            color: var(--green);
+        }
 
         /* ===== درباره من ===== */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
         .about-card {
             background: var(--bg-card);
             padding: 30px;
             border-radius: 16px;
             border: 1px solid var(--border);
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
         }
-        .about-card:hover { border-color: var(--purple); }
-        .about-card.full { grid-column: 1 / -1; }
-        .about-card h3 { color: #fff; font-size: 1.15rem; margin-bottom: 12px; }
-        .about-card p { color: var(--text-light); font-size: 0.95rem; }
 
-        /* ===== مهارت‌ها ===== */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; }
-        .skill-card {
-            background: var(--bg-card);
-            padding: 28px 20px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+        .about-card:hover {
+            border-color: var(--purple);
         }
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--purple), var(--green));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .skill-card:hover { transform: translateY(-6px); border-color: var(--purple); background: var(--bg-card-hover); }
-        .skill-card:hover::before { opacity: 1; }
-        .skill-card .icon { font-size: 2.5rem; margin-bottom: 12px; }
-        .skill-card h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
-        .skill-card p { color: var(--text-light); font-size: 0.8rem; }
 
-        .lang-list { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
-        .lang-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 15px 25px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
+        .about-card.full {
+            grid-column: 1 / -1;
         }
-        .lang-item:hover { border-color: var(--green); background: var(--bg-card-hover); }
-        .lang-item .dot { width: 12px; height: 12px; border-radius: 50%; }
 
-        /* ===== نمونه‌کارها ===== */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+        .about-card h3 {
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ===== کارت‌های پروژه و نمونه‌کارها ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+        }
+
         .project-card {
             background: var(--bg-card);
             border-radius: 14px;
             border: 1px solid var(--border);
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
-        .project-card:hover { transform: translateY(-6px); border-color: var(--purple); }
-        .project-card.featured { border-color: var(--green); box-shadow: 0 0 30px rgba(0,230,118,0.08); }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--purple);
+        }
+
+        .project-card.featured {
+            border-color: var(--green);
+            box-shadow: 0 0 30px rgba(0,230,118,0.08);
+        }
+
         .project-card .thumb {
             height: 140px;
             display: flex;
@@ -268,19 +302,152 @@
             font-size: 3.5rem;
             background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
         }
-        .project-card.featured .thumb { background: linear-gradient(135deg, #0a1a10, #12082a); }
-        .project-card .info { padding: 22px; }
-        .project-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.05rem; }
-        .project-card p { color: var(--text-light); font-size: 0.88rem; }
-        
-        .badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; margin-top: 10px; }
-        .badge-main { background: linear-gradient(135deg, var(--green-dark), var(--green)); color: #000; }
-        .badge-active { background: rgba(124,92,252,0.2); color: var(--purple); border: 1px solid rgba(124,92,252,0.3); }
-        .badge-archive { background: rgba(255,255,255,0.05); color: #666; border: 1px solid #333; }
-        .click-hint { display: block; font-size: 0.78rem; color: var(--green); margin-top: 10px; font-weight: bold; }
 
-        /* ===== رمان‌ها ===== */
-        .novels-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+        .project-card.featured .thumb {
+            background: linear-gradient(135deg, #0a1a10, #12082a);
+        }
+
+        .project-card .info {
+            padding: 22px;
+        }
+
+        .project-card h3 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            font-size: 0.88rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .badge-main {
+            background: linear-gradient(135deg, var(--green-dark), var(--green));
+            color: #000;
+        }
+
+        .badge-active {
+            background: rgba(124,92,252,0.2);
+            color: var(--purple);
+            border: 1px solid rgba(124,92,252,0.3);
+        }
+
+        .badge-archive {
+            background: rgba(255,255,255,0.05);
+            color: #666;
+            border: 1px solid #333;
+        }
+
+        .click-hint {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--green);
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* ===== مهارت‌ها ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 28px 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--green));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--purple);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card h3 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .lang-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .lang-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-item:hover {
+            border-color: var(--green);
+            background: var(--bg-card-hover);
+        }
+
+        .lang-item .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* ===== رمان‌ها و نوشته‌ها ===== */
+        .novels-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+        }
+
         .novel-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -289,75 +456,256 @@
             display: flex;
             align-items: center;
             gap: 18px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        .novel-card:hover { border-color: var(--purple); background: var(--bg-card-hover); }
-        .novel-card .book-icon { font-size: 2.5rem; flex-shrink: 0; }
-        .novel-card h3 { color: #fff; font-size: 1rem; margin-bottom: 4px; }
-        .novel-card p { color: var(--text-light); font-size: 0.82rem; }
+
+        .novel-card:hover {
+            border-color: var(--purple);
+            background: var(--bg-card-hover);
+        }
+
+        .novel-card .book-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .novel-card h3 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .novel-card p {
+            color: var(--text-light);
+            font-size: 0.82rem;
+        }
 
         /* ===== تماس ===== */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
         .contact-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 25px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        .contact-card:hover { border-color: var(--purple); transform: translateY(-4px); }
-        .contact-card .c-icon { font-size: 2rem; margin-bottom: 10px; }
-        .contact-card h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
-        .contact-card a { color: var(--text-light); font-size: 0.9rem; }
 
-        /* ===== اخبار ===== */
-        .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 25px; margin-bottom: 20px; }
-        .news-title { color: #fff; font-size: 1.25rem; font-weight: bold; }
-        .news-date { color: var(--green); font-size: 0.8rem; background: rgba(0,230,118,0.1); padding: 3px 10px; border-radius: 10px; float: left; }
-        .news-body { margin: 15px 0; color: var(--text-light); line-height: 1.8; white-space: pre-line; }
-        
+        .contact-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-4px);
+        }
+
+        .contact-card .c-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card h3 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .contact-card a {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ===== صفحه اخبار ===== */
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .news-title {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .news-date {
+            color: var(--green);
+            font-size: 0.8rem;
+            background: rgba(0,230,118,0.1);
+            padding: 3px 10px;
+            border-radius: 10px;
+            float: left;
+        }
+
+        .news-body {
+            margin: 15px 0;
+            color: var(--text-light);
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
         .apk-download-btn {
-            display: inline-flex; align-items: center; gap: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: linear-gradient(135deg, var(--green), var(--green-dark));
-            color: #000 !important; padding: 12px 22px; border-radius: 10px;
-            font-weight: 900; margin-top: 10px; font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(0,230,118,0.2); transition: 0.3s;
+            color: #000 !important;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 900;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0,230,118,0.2);
+            transition: all 0.3s ease;
         }
-        .apk-download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,230,118,0.4); }
 
-        /* ===== پشتیبانی و فرم‌ها ===== */
-        .form-group { background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 14px; margin-bottom: 30px; }
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #0a0a10; color: #fff; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
-        .btn-send { width: 100%; padding: 12px; background: var(--purple); color: #fff; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; font-family: inherit; font-size:1rem; }
-        .btn-send:hover { background: var(--purple-dark); }
+        .apk-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,230,118,0.4);
+        }
 
-        .ticket-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 15px; }
-        .ticket-header { display: flex; justify-content: space-between; border-bottom: 1px solid #1a1a2e; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.85rem; color: #888; }
-        .ticket-user { color: var(--purple); font-weight: bold; }
-        .ticket-reply { background: rgba(0,230,118,0.08); border-right: 3px solid var(--green); padding: 12px; border-radius: 6px; margin-top: 12px; color: #e0e0e0; }
-        .ticket-reply-title { color: var(--green); font-weight: bold; font-size: 0.85rem; margin-bottom: 4px; }
+        /* ===== فرم پشتیبانی ===== */
+        .form-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+        }
 
-        /* ===== پاپ‌آپ ===== */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #0a0a10;
+            color: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .btn-send {
+            width: 100%;
+            padding: 12px;
+            background: var(--purple);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .btn-send:hover {
+            background: var(--purple-dark);
+        }
+
+        /* ===== کارت تیکت‌های پشتیبانی ===== */
+        .ticket-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #1a1a2e;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .ticket-user {
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        .ticket-reply {
+            background: rgba(0,230,118,0.08);
+            border-right: 3px solid var(--green);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            color: #e0e0e0;
+        }
+
+        .ticket-reply-title {
+            color: var(--green);
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        /* ===== پاپ‌آپ (Modal) ===== */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
-            display: none; justify-content: center; align-items: center; z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
-        .modal-overlay.active { display: flex; }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
         .modal-content {
-            background: var(--bg-card); width: 90%; max-width: 550px;
-            border-radius: 16px; border: 1px solid var(--purple); padding: 30px; position: relative;
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 550px;
+            border-radius: 16px;
+            border: 1px solid var(--purple);
+            padding: 30px;
+            position: relative;
         }
-        .close-btn { position: absolute; top: 12px; left: 18px; font-size: 1.4rem; color: #fff; cursor: pointer; background: none; border: none; }
 
-        footer { text-align: center; padding: 40px 20px; color: #444; border-top: 1px solid var(--border); margin-top: 60px; font-size: 0.9rem; }
-        footer .heart { color: var(--purple); }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            left: 18px;
+            font-size: 1.4rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
 
+        /* ===== فوتر ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #444;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        footer .heart {
+            color: var(--purple);
+        }
+
+        /* ===== ریسپانسيو موبایل ===== */
         @media (max-width: 700px) {
             header h1 { font-size: 2rem; }
             .about-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr 1fr; }
+            nav button { padding: 6px 12px; font-size: 0.85rem; }
         }
     </style>
 </head>
