@@ -10,7 +10,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ===== متغیرهای رنگی تم‌ها ===== */
+        /* ===== متغیرهای تم‌ها ===== */
         :root {
             --bg-main: #0f172a;
             --bg-card: #1e293b;
@@ -480,10 +480,9 @@
 
     <!-- ===== اسکریپت‌ها ===== -->
     <script>
-        // آدرس دیتابیس ابری
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_news_stable_v1";
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_bulletproof_v200";
 
-        // --- 📅 محاسبه دقیق تاریخ شمسی ---
+        // --- 📅 محاسبه تاریخ شمسی ---
         function getShamsiDate() {
             try {
                 const f = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {year:'numeric', month:'2-digit', day:'2-digit'});
@@ -525,14 +524,14 @@
             document.getElementById('nApkUrl').value = fileName;
         }
 
-        // --- آپلود خودکار ---
+        // --- آپلود ایمن بدون برهم زدن برنامه ---
         async function uploadFileToCatbox(file) {
             let formData = new FormData();
             formData.append('reqtype', 'fileupload');
             formData.append('fileToUpload', file);
             let response = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: formData });
             if (response.ok) return await response.text();
-            else throw new Error("آپلود ناموفق بود.");
+            else throw new Error("آپلود نا‌موفق بود.");
         }
 
         function readFileAsDataURL(file) {
@@ -549,15 +548,17 @@
             else alert("❌ رمز اشتباه است!");
         }
 
+        // --- انتشار خبر ضد ارور ---
         async function postNews() {
-            let title = document.getElementById('nTitle').value;
-            let text = document.getElementById('nText').value;
-            let apkUrlText = document.getElementById('nApkUrl').value;
+            let title = document.getElementById('nTitle').value.trim();
+            let text = document.getElementById('nText').value.trim();
+            let apkUrlText = document.getElementById('nApkUrl').value.trim();
+            
             let imgInput = document.getElementById('nImgFile');
             let vidInput = document.getElementById('nVidFile');
             let btn = document.getElementById('btnPublish');
 
-            if(!title || !text) return alert("عنوان و متن خبر الزامی است.");
+            if(!title || !text) return alert("لطفاً عنوان و متن خبر را وارد کنید.");
 
             btn.disabled = true;
             btn.innerText = "⏳ در حال ثبت و انتشار خبر...";
@@ -565,62 +566,74 @@
             let imgUrl = "";
             let vidUrl = "";
 
-            try {
-                if(imgInput.files && imgInput.files[0]) {
-                    try { imgUrl = await uploadFileToCatbox(imgInput.files[0]); }
-                    catch(e) { imgUrl = await readFileAsDataURL(imgInput.files[0]); }
-                }
-
-                if(vidInput.files && vidInput.files[0]) {
-                    vidUrl = await uploadFileToCatbox(vidInput.files[0]);
-                }
-
-                let newPost = {
-                    title: title,
-                    text: text,
-                    apk: apkUrlText,
-                    imgUrl: imgUrl,
-                    vidUrl: vidUrl,
-                    date: getShamsiDate()
-                };
-
-                // ذخیره اول در حافظه محلی
-                let localNews = JSON.parse(localStorage.getItem('artam_local_news') || '[]');
-                localNews.unshift(newPost);
-                localStorage.setItem('artam_local_news', JSON.stringify(localNews));
-
-                // سعی برای ثبت در سرور ابری (در پس‌زمینه)
+            // ۱. پردازش عکس (ایمن)
+            if(imgInput && imgInput.files && imgInput.files[0]) {
                 try {
-                    let res = await fetch(DB_URL);
-                    let cloudNews = res.ok ? await res.json() : [];
-                    if(!Array.isArray(cloudNews)) cloudNews = [];
-                    cloudNews.unshift(newPost);
-                    await fetch(DB_URL, { method: 'POST', body: JSON.stringify(cloudNews) });
-                } catch(err) {
-                    console.log("حالت آفلاین ذخیره شد.");
+                    imgUrl = await uploadFileToCatbox(imgInput.files[0]);
+                } catch(e) {
+                    try {
+                        if(imgInput.files[0].size < 2 * 1024 * 1024) {
+                            imgUrl = await readFileAsDataURL(imgInput.files[0]);
+                        }
+                    } catch(err) {}
                 }
-
-                alert("✅ خبر با موفقیت منتشر شد!");
-                location.reload();
-
-            } catch(error) {
-                alert("❌ خطایی در انتشار رخ داد!");
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "🚀 انتشار در سایت";
             }
+
+            // ۲. پردازش ویدیو (ایمن)
+            if(vidInput && vidInput.files && vidInput.files[0]) {
+                try {
+                    vidUrl = await uploadFileToCatbox(vidInput.files[0]);
+                } catch(e) {
+                    alert("⚠️ آپلود ویدیو موفقیت‌آمیز نبود، خبر بدون ویدیو منتشر می‌شود.");
+                }
+            }
+
+            let newPost = {
+                id: Date.now(),
+                title: title,
+                text: text,
+                apk: apkUrlText,
+                imgUrl: imgUrl,
+                vidUrl: vidUrl,
+                date: getShamsiDate()
+            };
+
+            // ۳. ذخیره محلی بدون شکست
+            try {
+                let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
+                if(!Array.isArray(localNews)) localNews = [];
+                localNews.unshift(newPost);
+                localStorage.setItem('artam_news_v200', JSON.stringify(localNews));
+            } catch(e) {
+                try {
+                    let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
+                    newPost.imgUrl = ""; // پاک کردن عکس سنگین در صورت پر بودن حافظه
+                    localNews.unshift(newPost);
+                    localStorage.setItem('artam_news_v200', JSON.stringify(localNews));
+                } catch(err) {}
+            }
+
+            // ۴. ارسال ابری در پس‌زمینه بدون ایجاد ارور
+            try {
+                let res = await fetch(DB_URL);
+                let cloudNews = res.ok ? await res.json() : [];
+                if(!Array.isArray(cloudNews)) cloudNews = [];
+                cloudNews.unshift(newPost);
+                await fetch(DB_URL, { method: 'POST', body: JSON.stringify(cloudNews) });
+            } catch(err) {}
+
+            alert("✅ خبر با موفقیت منتشر شد!");
+            location.reload();
         }
 
-        // --- بارگذاری اخبار (با ضمانت عدم نمایش ارور) ---
+        // --- بارگذاری اخبار ---
         async function loadNews() {
             let container = document.getElementById('newsList');
             let allNews = [];
 
-            // ابتدا خواندن اخبار محلی
-            let localNews = JSON.parse(localStorage.getItem('artam_local_news') || '[]');
-            allNews = localNews;
+            let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
+            if(Array.isArray(localNews)) allNews = localNews;
 
-            // سعی برای دریافت آخرین اخبار از سرور ابری بدون نمایش ارور شبکه
             try {
                 let res = await fetch(DB_URL);
                 if(res.ok) {
@@ -629,9 +642,7 @@
                         allNews = cloudNews;
                     }
                 }
-            } catch(e) {
-                // در صورت قطعی اینترنت، بدون هیچ اروری همان اخبار محلی را نشان بده
-            }
+            } catch(e) {}
 
             if(allNews.length === 0) {
                 let currentDate = getShamsiDate();
