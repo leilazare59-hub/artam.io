@@ -367,16 +367,18 @@
     <p class="section-sub reveal">چند تصویر از من</p>
     <div class="gallery">
       <div class="photo-frame reveal">
-        <!-- ✅ جای عکس اول: وقتی عکس اضافه شد، این بخش جایگزین بشه -->
-        <div class="photo-slot">
+        <!-- عکس اول: اگه images/photo-1.jpg موجود باشه خودکار نمایش داده میشه -->
+        <img src="images/photo-1.jpg" alt="عکس ۱" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.querySelector('.photo-slot').style.display='flex';">
+        <div class="photo-slot" style="display:none">
           <div class="icon">📷</div>
           <span>عکس اول — به‌زودی</span>
         </div>
         <div class="caption">📸 عکس ۱</div>
       </div>
       <div class="photo-frame reveal">
-        <!-- ✅ جای عکس دوم: وقتی عکس اضافه شد، این بخش جایگزین بشه -->
-        <div class="photo-slot">
+        <!-- عکس دوم: اگه images/photo-2.jpg موجود باشه خودکار نمایش داده میشه -->
+        <img src="images/photo-2.jpg" alt="عکس ۲" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'; this.parentElement.querySelector('.photo-slot').style.display='flex';">
+        <div class="photo-slot" style="display:none">
           <div class="icon">📷</div>
           <span>عکس دوم — به‌زودی</span>
         </div>
