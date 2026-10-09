@@ -16,6 +16,9 @@ concurrency:
 
 jobs:
   deploy:
+    # اگه هنوز GitHub Pages در تنظیمات مخزن فعال نشده باشه، این جاب خطا میده
+    # ولی اجرای کل workflow رو متوقف نمیکنه. بعد از فعال‌سازی Pages، خودکار مستقر میشه.
+    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
