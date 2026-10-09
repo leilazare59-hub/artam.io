@@ -24,7 +24,8 @@
     <div id="container">درحال بارگذاری...</div>
 
     <script>
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_tickets_v99";
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_tickets_v105";
+        const PROXY = "https://api.codetabs.com/v1/proxy?quest=";
         const ADMIN_PASS = "123123آرتام آر آر آر آرت";
 
         window.onload = function() {
@@ -40,7 +41,7 @@
         async function loadAdminTickets() {
             let container = document.getElementById('container');
             try {
-                let res = await fetch(DB_URL);
+                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
                 if(!res.ok) { container.innerHTML = "پیامی یافت نشد."; return; }
 
                 let text = await res.text();
@@ -78,13 +79,13 @@
 
         async function saveReply(index) {
             let replyText = document.getElementById(`reply-${index}`).value;
-            let res = await fetch(DB_URL);
+            let res = await fetch(PROXY + encodeURIComponent(DB_URL));
             let text = await res.text();
             let tickets = JSON.parse(text);
 
             tickets[index].reply = replyText;
 
-            await fetch(DB_URL, {
+            await fetch(PROXY + encodeURIComponent(DB_URL), {
                 method: 'POST',
                 body: JSON.stringify(tickets)
             });
@@ -96,13 +97,13 @@
         async function deleteTicket(index) {
             if(!confirm("آیا از حذف این پیام مطمئن هستید؟")) return;
 
-            let res = await fetch(DB_URL);
+            let res = await fetch(PROXY + encodeURIComponent(DB_URL));
             let text = await res.text();
             let tickets = JSON.parse(text);
 
             tickets.splice(index, 1);
 
-            await fetch(DB_URL, {
+            await fetch(PROXY + encodeURIComponent(DB_URL), {
                 method: 'POST',
                 body: JSON.stringify(tickets)
             });
