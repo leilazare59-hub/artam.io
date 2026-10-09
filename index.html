@@ -5,83 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آرتام حمیدی | سایت شخصی</title>
     <style>
+        /* ===== فونت وزیرمتن ===== */
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ===== متغیرهای تم‌ها ===== */
+        /* ===== متغیرهای رنگی تم‌ها ===== */
         :root {
-            --bg-main: #0f172a; --bg-card: #1e293b;
-            --text-main: #f8fafc; --text-muted: #94a3b8;
-            --primary: #8b5cf6; --accent: #10b981;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #8b5cf6;
+            --accent: #10b981;
             --border: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* تم روشن */
         body.theme-light {
-            --bg-main: #f8fafc; --bg-card: #ffffff;
-            --text-main: #0f172a; --text-muted: #64748b;
-            --primary: #7c3aed; --accent: #059669;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #7c3aed;
+            --accent: #059669;
             --border: rgba(0, 0, 0, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
+        /* تم بنفش */
         body.theme-purple {
-            --bg-main: #170f2e; --bg-card: #2a1b54;
-            --text-main: #ffffff; --text-muted: #cbd5e1;
-            --primary: #a78bfa; --accent: #34d399;
+            --bg-main: #170f2e;
+            --bg-card: #2a1b54;
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --primary: #a78bfa;
+            --accent: #34d399;
             --border: rgba(255, 255, 255, 0.15);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        body { font-family: 'Vazirmatn', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.8; transition: 0.4s; overflow-x: hidden; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.9;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
         a { text-decoration: none; color: inherit; }
 
-        /* سوئیچر تم‌ها */
-        .theme-switcher { position: fixed; bottom: 25px; left: 25px; background: var(--bg-card); border: 1px solid var(--border); padding: 10px 15px; border-radius: 30px; display: flex; gap: 10px; box-shadow: var(--shadow); z-index: 1000; }
-        .theme-btn { width: 25px; height: 25px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.3s; }
+        /* ===== انتخاب‌گر تم (گوشه پایین) ===== */
+        .theme-switcher {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 30px;
+            display: flex;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
         .theme-btn:hover { transform: scale(1.2); }
         .theme-btn.active { border-color: var(--text-main); transform: scale(1.1); }
-        .btn-dark { background: #0f172a; } .btn-light { background: #f8fafc; } .btn-purple { background: #2a1b54; }
 
-        /* هدر (بدون عکس پروفایل) */
-        header { padding: 60px 20px 40px; text-align: center; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%); }
+        .btn-dark { background: #0f172a; border-color: #333; }
+        .btn-light { background: #f8fafc; border-color: #ccc; }
+        .btn-purple { background: #2a1b54; border-color: #555; }
+
+        /* ===== هدر ===== */
+        header {
+            padding: 70px 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
+        }
+
         header h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; }
         header .job { color: var(--accent); font-weight: 700; font-size: 1.15rem; }
+
         .tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
         .tag { background: var(--bg-card); border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
 
-        /* ناوبری */
-        nav { display: flex; justify-content: center; gap: 10px; padding: 15px; position: sticky; top: 0; z-index: 100; background: rgba(var(--bg-main), 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-        nav button { background: transparent; border: none; color: var(--text-muted); font-family: inherit; font-size: 1rem; font-weight: 700; padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        /* ===== منوی ناوبری ===== */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav button {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
         nav button:hover { color: var(--text-main); background: var(--bg-card); }
         nav button.active { background: var(--primary); color: #fff; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); }
 
-        /* صفحات */
-        .page-content { display: none; max-width: 900px; margin: 50px auto; padding: 0 20px; animation: slideUp 0.4s ease forwards; }
+        /* ===== ساختار صفحات ===== */
+        .page-content {
+            display: none;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+            animation: slideUp 0.4s ease forwards;
+        }
+
         .page-content.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         section { margin-bottom: 60px; }
         .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; border-right: 4px solid var(--primary); padding-right: 15px; color: var(--text-main); }
         .title-green { border-right-color: var(--accent); }
 
-        /* کارت‌ها */
+        /* ===== کارت‌ها ===== */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; transition: 0.3s; }
+        .grid-small { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 15px; }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
         .card.interactive { cursor: pointer; }
         .card.interactive:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow); }
+
         .card .icon { font-size: 2.2rem; margin-bottom: 12px; }
         .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
+        /* زبان‌های برنامه‌نویسی */
+        .lang-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; }
+        .lang-item { background: var(--bg-card); border: 1px solid var(--border); padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        /* لینک‌های ارتباطی */
         .link-card { display: flex; align-items: center; gap: 15px; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s; }
         .link-card:hover { border-color: var(--primary); transform: scale(1.02); }
         .link-card .l-icon { font-size: 1.8rem; }
         .link-card .l-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
         .link-card .l-info p { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ===== بخش اخبار با استایل دقیق تاریخ ===== */
+        /* ===== بخش اخبار ===== */
         .news-item { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; overflow: hidden; }
         .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
         .n-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); }
@@ -90,7 +193,7 @@
         .btn-download { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff !important; padding: 12px 22px; border-radius: 10px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* عکس و ویدیو اخبار */
+        /* مدیا (عکس و ویدیو اخبار) */
         .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-top: 15px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
         .news-media-img:hover { opacity: 0.9; }
         .news-media-vid { width: 100%; max-height: 500px; border-radius: 12px; margin-top: 15px; outline: none; border: 1px solid var(--border); background: #000; }
@@ -140,12 +243,12 @@
     <!-- هدر -->
     <header>
         <h1>آرتام حمیدی</h1>
-        <div class="job">توسعه‌دهنده نرم‌افزار و بازی‌ساز</div>
+        <div class="job">برنامه‌نویس C# | نویسنده | تولیدکننده محتوا | سازنده‌ی جهان ماجراجویی</div>
         <div class="tags">
-            <span class="tag">📍 یزد، ایران</span>
-            <span class="tag">💻 C# Developer</span>
-            <span class="tag">📖 نویسنده</span>
-            <span class="tag">🌍 جهان ماجراجویی</span>
+            <span class="tag">📍 ایران، استان یزد، شهر یزد</span>
+            <span class="tag">💻 توسعه‌دهنده C#</span>
+            <span class="tag">📖 رمان‌نویس</span>
+            <span class="tag">🤖 هوش مصنوعی</span>
         </div>
     </header>
 
@@ -154,42 +257,181 @@
         <button id="tab-news" onclick="showTab('news')">اخبار و رسانه</button>
     </nav>
 
-    <!-- صفحه اصلی -->
+    <!-- ========================================== -->
+    <!-- ================ صفحه اصلی ================ -->
+    <!-- ========================================== -->
     <div id="page-home" class="page-content active">
+        
+        <!-- درباره من -->
         <section>
-            <h2 class="section-title">مسیر فعالیت من</h2>
+            <h2 class="section-title">درباره من</h2>
             <div class="card">
-                <p>سلام! من آرتام حمیدی هستم. حدود ۲ ساله که در فضای مجازی فعالیت دارم. از مدیریت کانال دانستنی تلگرام (با ۴۰۰ عضو) تا تولید محتوای ماینکرفت. در حال حاضر تمام تمرکز من روی خلق <strong>«جهان ماجراجویی»</strong> است؛ پروژه‌ای با زبان سی‌شارپ که ترکیبی از برنامه‌نویسی و رمان‌نویسی است.</p>
+                <h3 style="color:var(--accent); margin-bottom:10px;">🧑‍💻 مسیر فعالیت من</h3>
+                <p>
+                    من آرتام حمیدی، متولد و ساکن یزد هستم. حدود ۲ ساله که توی فضای مجازی و شبکه‌های اجتماعی
+                    فعالیت مستمر دارم. از تولید محتوای گیمینگ در ماینکرفت تا راه‌اندازی کانال‌های تلگرامی (از جمله کانال دانستنی که تا ۴۰۰ عضو رشد کرد)،
+                    تجربه‌های عالی به دست آوردم. در حال حاضر تمام تمرکز و توان خودم رو روی توسعه پروژه
+                    بزرگ <strong>«جهان ماجراجویی»</strong> گذاشتم که با سرعت بالا در حال پیشرفته.
+                    همچنین در زمینه رمان‌نویسی (رمان گای و صد سال فرصت) فعالیت دارم و عاشق داستان‌سرایی هستم.
+                </p>
             </div>
         </section>
 
+        <!-- نمونه‌کارها -->
         <section>
             <h2 class="section-title title-green">نمونه‌کارها و پروژه‌ها</h2>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:15px;">💡 روی هر کدام کلیک کنید تا توضیحات کامل باز شود:</p>
+            
             <div class="grid">
-                <div class="card interactive" onclick="openModal('jahan')"><div class="icon">🌍</div><h3>جهان ماجراجویی</h3><p>پروژه اصلی توسعه نرم‌افزار</p></div>
-                <div class="card interactive" onclick="openModal('ramz')"><div class="icon">🔐</div><h3>سایت رمزگذاری</h3><p>ابزار امنیت متون آنلاین</p></div>
-                <div class="card interactive" onclick="openModal('ai')"><div class="icon">🤖</div><h3>هوش مصنوعی</h3><p>دستیار شخصی هوشمند</p></div>
-                <div class="card interactive" onclick="openModal('mc')"><div class="icon">⛏️</div><h3>ماینکرفت</h3><p>تولید محتوای گیمینگ</p></div>
-                <div class="card interactive" onclick="openModal('gun')"><div class="icon">🔫</div><h3>بازی تفنگی</h3><p>تست فیزیک تیراندازی</p></div>
-                <div class="card interactive" onclick="openModal('tel')"><div class="icon">📚</div><h3>کانال تلگرام</h3><p>مدیریت رسانه ۴۰۰ نفره</p></div>
+
+                <div class="card interactive" onclick="openModal('jahan')">
+                    <div class="icon">🌍</div>
+                    <h3>جهان ماجراجویی</h3>
+                    <p>پروژه‌ی اصلی و بزرگ من با سی‌شارپ</p>
+                </div>
+
+                <div class="card interactive" onclick="openModal('ramz')">
+                    <div class="icon">🔐</div>
+                    <h3>سایت رمزگذاری</h3>
+                    <p>ابزار آنلاین برای رمزنگاری متون</p>
+                </div>
+
+                <div class="card interactive" onclick="openModal('ai')">
+                    <div class="icon">🤖</div>
+                    <h3>هوش مصنوعی شخصی</h3>
+                    <p>دستیار هوشمند اختصاصی</p>
+                </div>
+
+                <div class="card interactive" onclick="openModal('mc')">
+                    <div class="icon">⛏️</div>
+                    <h3>پروژه‌های ماینکرفت</h3>
+                    <p>پیج و محتواهای تولید شده</p>
+                </div>
+
+                <div class="card interactive" onclick="openModal('gun')">
+                    <div class="icon">🔫</div>
+                    <h3>بازی تفنگی</h3>
+                    <p>پروژه بازی تیراندازی</p>
+                </div>
+
+                <div class="card interactive" onclick="openModal('telegram')">
+                    <div class="icon">📚</div>
+                    <h3>کانال دانستنی تلگرام</h3>
+                    <p>تجربه ساخت کانال با ۴۰۰ عضو</p>
+                </div>
+
             </div>
         </section>
 
+        <!-- مهارت‌ها -->
         <section>
-            <h2 class="section-title">ارتباط مستقیم با من</h2>
-            <div class="grid">
-                <a href="https://t.me/AaPi8" target="_blank"><div class="link-card"><div class="l-icon">✈️</div><div class="l-info"><h4>تلگرام</h4><p>@AaPi8</p></div></div></a>
-                <a href="mailto:artamhamidi@gmail.com"><div class="link-card"><div class="l-icon">📧</div><div class="l-info"><h4>ایمیل</h4><p>ارسال پیام</p></div></div></a>
-                <a href="https://eitaa.com/ArtamA1" target="_blank"><div class="link-card"><div class="l-icon">💬</div><div class="l-info"><h4>ایتا</h4><p>@ArtamA1</p></div></div></a>
-                <a href="https://youtube.com/@artamix-c4n?si=KYUaxabnh3JvSkRy" target="_blank"><div class="link-card"><div class="l-icon">🔴</div><div class="l-info"><h4>یوتیوب</h4><p>مشاهده کانال</p></div></div></a>
+            <h2 class="section-title">مهارت‌های من</h2>
+            <div class="grid-small">
+                <div class="card" style="text-align:center;">
+                    <div class="icon">💻</div>
+                    <h3>برنامه‌نویسی</h3>
+                    <p>توسعه با C# و وب</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="icon">📖</div>
+                    <h3>رمان‌نویسی</h3>
+                    <p>داستان‌سرایی و سناریو</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="icon">🎬</div>
+                    <h3>شبکه‌های اجتماعی</h3>
+                    <p>تولید محتوا و مدیریت</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="icon">🤖</div>
+                    <h3>هوش مصنوعی</h3>
+                    <p>کار با مدل‌های AI</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="icon">🔧</div>
+                    <h3>سخت‌افزار</h3>
+                    <p>آشنایی پایه</p>
+                </div>
+            </div>
+
+            <h3 style="color:var(--text-main); margin-top:25px; font-size:1rem;">زبان‌های برنامه‌نویسی</h3>
+            <div class="lang-list">
+                <div class="lang-item">
+                    <div class="dot" style="background:var(--primary);"></div>
+                    <div><strong>C# (سی‌شارپ)</strong> <small style="color:var(--text-muted);">– زبان اصلی</small></div>
+                </div>
+                <div class="lang-item">
+                    <div class="dot" style="background:#ffd600;"></div>
+                    <div><strong>JavaScript</strong> <small style="color:var(--text-muted);">– با کمک AI</small></div>
+                </div>
+                <div class="lang-item">
+                    <div class="dot" style="background:var(--accent);"></div>
+                    <div><strong>HTML & CSS</strong> <small style="color:var(--text-muted);">– وب</small></div>
+                </div>
             </div>
         </section>
+
+        <!-- رمان‌ها -->
+        <section>
+            <h2 class="section-title title-green">رمان‌ها و نوشته‌ها</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">📕</div>
+                    <h3>رمان گای</h3>
+                    <p>یکی از اولیه‌ترین و جذاب‌ترین داستان‌های من درباره انتخاب‌ها و سرنوشت.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📗</div>
+                    <h3>صد سال فرصت</h3>
+                    <p>روایتی عمیق از زمان، فرصت‌های دوباره و داستان‌های موازی.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📓</div>
+                    <h3>ایده‌های نو...</h3>
+                    <p>چندین سناریو و داستان کوتاه در مرحله نگارش.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- تماس -->
+        <section>
+            <h2 class="section-title">راه‌های ارتباط مستقیم</h2>
+            <div class="grid">
+                <a href="https://t.me/AaPi8" target="_blank">
+                    <div class="link-card">
+                        <div class="l-icon">✈️</div>
+                        <div class="l-info"><h4>تلگرام</h4><p>@AaPi8</p></div>
+                    </div>
+                </a>
+                <a href="mailto:artamhamidi@gmail.com">
+                    <div class="link-card">
+                        <div class="l-icon">📧</div>
+                        <div class="l-info"><h4>ایمیل اصلی</h4><p>artamhamidi@gmail.com</p></div>
+                    </div>
+                </a>
+                <a href="https://eitaa.com/ArtamA1" target="_blank">
+                    <div class="link-card">
+                        <div class="l-icon">💬</div>
+                        <div class="l-info"><h4>ایتا</h4><p>@ArtamA1</p></div>
+                    </div>
+                </a>
+                <a href="https://youtube.com/@artamix-c4n?si=KYUaxabnh3JvSkRy" target="_blank">
+                    <div class="link-card">
+                        <div class="l-icon">🔴</div>
+                        <div class="l-info"><h4>کانال یوتیوب</h4><p>@artamix-c4n</p></div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
     </div>
 
-    <!-- صفحه اخبار -->
+    <!-- ========================================== -->
+    <!-- ================= صفحه اخبار =============== -->
+    <!-- ========================================== -->
     <div id="page-news" class="page-content">
         <section>
-            <h2 class="section-title">اخبار، تصاویر و ویدیوها</h2>
+            <h2 class="section-title title-green">اخبار، تصاویر و ویدیوها</h2>
             <div id="newsList"></div>
 
             <div class="admin-box">
@@ -236,29 +478,23 @@
 
     <footer>طراحی و توسعه توسط آرتام حمیدی | ۲۰۲۵</footer>
 
+    <!-- ===== اسکریپت‌ها ===== -->
     <script>
-        // --- 📅 موتور جدید و دقیق محاسبه تاریخ شمسی ---
+        // آدرس دیتابیس ابری
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_news_stable_v1";
+
+        // --- 📅 محاسبه دقیق تاریخ شمسی ---
         function getShamsiDate() {
-            let now = new Date();
             try {
-                // محاسبه دقیق تاریخ شمسی به صورت استاندارد
-                let formatter = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit'
-                });
-                let parts = formatter.formatToParts(now);
-                let year = parts.find(p => p.type === 'year').value;
-                let month = parts.find(p => p.type === 'month').value;
-                let day = parts.find(p => p.type === 'day').value;
-                
-                let englishResult = `${year}/${month}/${day}`;
-                
-                // تبدیل به اعداد فارسی زیبا
+                const f = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {year:'numeric', month:'2-digit', day:'2-digit'});
+                let parts = f.formatToParts(new Date());
+                let y = parts.find(p => p.type === 'year').value;
+                let m = parts.find(p => p.type === 'month').value;
+                let d = parts.find(p => p.type === 'day').value;
+                let res = `${y}/${m}/${d}`;
                 const faDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-                return englishResult.replace(/\d/g, d => faDigits[d]);
-            } catch (e) {
-                // اگر مرورگر قدیمی بود
+                return res.replace(/\d/g, digit => faDigits[digit]);
+            } catch(e) {
                 return new Date().toLocaleDateString('fa-IR');
             }
         }
@@ -271,6 +507,7 @@
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.btn-' + themeName).classList.add('active');
         }
+
         window.onload = function() {
             setTheme(localStorage.getItem('artam_theme') || 'dark');
             loadNews();
@@ -293,17 +530,9 @@
             let formData = new FormData();
             formData.append('reqtype', 'fileupload');
             formData.append('fileToUpload', file);
-            
-            let response = await fetch('https://catbox.moe/user/api.php', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                return await response.text();
-            } else {
-                throw new Error("آپلود انجام نشد.");
-            }
+            let response = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: formData });
+            if (response.ok) return await response.text();
+            else throw new Error("آپلود ناموفق بود.");
         }
 
         function readFileAsDataURL(file) {
@@ -317,13 +546,13 @@
 
         function checkAdmin() {
             if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") document.getElementById('adminForm').style.display = 'block';
+            else alert("❌ رمز اشتباه است!");
         }
 
         async function postNews() {
             let title = document.getElementById('nTitle').value;
             let text = document.getElementById('nText').value;
             let apkUrlText = document.getElementById('nApkUrl').value;
-            
             let imgInput = document.getElementById('nImgFile');
             let vidInput = document.getElementById('nVidFile');
             let btn = document.getElementById('btnPublish');
@@ -331,62 +560,96 @@
             if(!title || !text) return alert("عنوان و متن خبر الزامی است.");
 
             btn.disabled = true;
-            btn.innerText = "⏳ در حال پردازش و ثبت خبر...";
+            btn.innerText = "⏳ در حال ثبت و انتشار خبر...";
 
             let imgUrl = "";
             let vidUrl = "";
 
             try {
                 if(imgInput.files && imgInput.files[0]) {
-                    try {
-                        imgUrl = await uploadFileToCatbox(imgInput.files[0]);
-                    } catch(e) {
-                        imgUrl = await readFileAsDataURL(imgInput.files[0]);
-                    }
+                    try { imgUrl = await uploadFileToCatbox(imgInput.files[0]); }
+                    catch(e) { imgUrl = await readFileAsDataURL(imgInput.files[0]); }
                 }
 
                 if(vidInput.files && vidInput.files[0]) {
                     vidUrl = await uploadFileToCatbox(vidInput.files[0]);
                 }
 
-                // محاسبه دقیق تاریخ شمسی در همان لحظه انتشار
-                let currentDate = getShamsiDate();
+                let newPost = {
+                    title: title,
+                    text: text,
+                    apk: apkUrlText,
+                    imgUrl: imgUrl,
+                    vidUrl: vidUrl,
+                    date: getShamsiDate()
+                };
 
-                let allNews = JSON.parse(localStorage.getItem('artam_fixed_date_news') || '[]');
-                allNews.unshift({ title, text, apk: apkUrlText, imgUrl, vidUrl, date: currentDate });
-                localStorage.setItem('artam_fixed_date_news', JSON.stringify(allNews));
+                // ذخیره اول در حافظه محلی
+                let localNews = JSON.parse(localStorage.getItem('artam_local_news') || '[]');
+                localNews.unshift(newPost);
+                localStorage.setItem('artam_local_news', JSON.stringify(localNews));
+
+                // سعی برای ثبت در سرور ابری (در پس‌زمینه)
+                try {
+                    let res = await fetch(DB_URL);
+                    let cloudNews = res.ok ? await res.json() : [];
+                    if(!Array.isArray(cloudNews)) cloudNews = [];
+                    cloudNews.unshift(newPost);
+                    await fetch(DB_URL, { method: 'POST', body: JSON.stringify(cloudNews) });
+                } catch(err) {
+                    console.log("حالت آفلاین ذخیره شد.");
+                }
 
                 alert("✅ خبر با موفقیت منتشر شد!");
                 location.reload();
 
             } catch(error) {
-                alert("❌ خطا در انتشار خبر!");
+                alert("❌ خطایی در انتشار رخ داد!");
             } finally {
                 btn.disabled = false;
                 btn.innerText = "🚀 انتشار در سایت";
             }
         }
 
-        function loadNews() {
-            let allNews = JSON.parse(localStorage.getItem('artam_fixed_date_news') || '[]');
+        // --- بارگذاری اخبار (با ضمانت عدم نمایش ارور) ---
+        async function loadNews() {
             let container = document.getElementById('newsList');
+            let allNews = [];
+
+            // ابتدا خواندن اخبار محلی
+            let localNews = JSON.parse(localStorage.getItem('artam_local_news') || '[]');
+            allNews = localNews;
+
+            // سعی برای دریافت آخرین اخبار از سرور ابری بدون نمایش ارور شبکه
+            try {
+                let res = await fetch(DB_URL);
+                if(res.ok) {
+                    let cloudNews = await res.json();
+                    if(Array.isArray(cloudNews) && cloudNews.length > 0) {
+                        allNews = cloudNews;
+                    }
+                }
+            } catch(e) {
+                // در صورت قطعی اینترنت، بدون هیچ اروری همان اخبار محلی را نشان بده
+            }
 
             if(allNews.length === 0) {
-                let initialDate = getShamsiDate();
+                let currentDate = getShamsiDate();
                 container.innerHTML = `
                     <div class="news-item">
                         <div class="news-header">
-                            <span class="n-title">🚀 شروع به کار سایت</span>
-                            <span class="n-date">${initialDate}</span>
+                            <span class="n-title">🚀 شروع به کار رسمی سایت آرتام</span>
+                            <span class="n-date">${currentDate}</span>
                         </div>
                         <p style="color:var(--text-muted);">سلام! سایت شخصی من آماده شد. تمام اخبار و آپدیت‌های جهان ماجراجویی در همین بخش قرار می‌گیرد.</p>
+                        <a href="app-debug.apk" class="btn-download" download>📥 دانلود مستقیم فایل APK</a>
                     </div>`;
                 return;
             }
 
             container.innerHTML = "";
             allNews.forEach(item => {
-                let btn = item.apk ? `<br><a href="${item.apk}" class="btn-download" download>📥 دانلود فایل APK</a>` : '';
+                let btn = item.apk ? `<br><a href="${item.apk}" class="btn-download" download>📥 دانلود فایل APK برنامه</a>` : '';
                 let imgHTML = item.imgUrl ? `<img src="${item.imgUrl}" class="news-media-img" onclick="openImg(this.src)" title="برای بزرگنمایی کلیک کنید">` : '';
                 
                 let vidHTML = item.vidUrl ? `
@@ -417,15 +680,39 @@
             document.getElementById('imgViewer').classList.remove('active');
         }
 
+        // --- پاپ‌آپ متنی پروژه‌ها ---
         const pData = {
-            'jahan': {t:"🌍 جهان ماجراجویی", d:"بزرگ‌ترین پروژه من با زبان سی‌شارپ. یک دنیای وسیع که هر روز ویژگی‌های جدیدی به آن اضافه می‌شود."},
-            'ramz': {t:"🔐 سایت رمزگذاری", d:"یک ابزار تحت وب تمیز و کاربردی برای رمزنگاری پیام‌ها جهت امنیت بیشتر."},
-            'ai': {t:"🤖 دستیار هوشمند", d:"توسعه یک دستیار اختصاصی برای کمک در کارهای روزمره و برنامه‌نویسی."},
-            'mc': {t:"⛏️ پروژه‌های ماینکرفت", d:"نقطه شروع فعالیت من در تولید محتوا و شبکه‌های اجتماعی."},
-            'gun': {t:"🔫 بازی تفنگی", d:"پروژه‌ای آزمایشی برای یادگیری مکانیزم‌های بازی‌های سه‌بعدی."},
-            'tel': {t:"📚 کانال تلگرام", d:"مدیریت یک کانال محتوایی موفق با ۴۰۰ عضو فعال."}
+            'jahan': {
+                title: "🌍 جهان ماجراجویی (پروژه اصلی)",
+                desc: "جهان ماجراجویی بزرگ‌ترین و مهم‌ترین پروژه منه که با زبان C# دارم می‌نویسمش. این پروژه با سرعت خیلی بالا داره پیشرفت می‌کنه و ترکیبی از سیستم‌های پیچیده نرم‌افزاری و ایده‌های داستانی خودمه."
+            },
+            'ramz': {
+                title: "🔐 سایت رمزگذاری",
+                desc: "یه ابزار کاربردی و آنلاین که نوشتم تا بشه متون رو به متون رمزنگاری‌شده غیرقابل‌خواندن تبدیل کرد و دوباره رمزگشایی‌شون کرد."
+            },
+            'ai': {
+                title: "🤖 هوش مصنوعی شخصی",
+                desc: "پروژه‌ای برای ساخت دستیار هوشمند و اختصاصی خودم که توی کارهای روزانه و کدنویسی به من کمک می‌کنه."
+            },
+            'mc': {
+                title: "⛏️ پروژه‌های ماینکرفت",
+                desc: "ساخت پیج و تولید محتوای گیمینگ ماینکرفت که یکی از اولین تجربه‌های جدی من در فضای مجازی بود."
+            },
+            'gun': {
+                title: "🔫 پروژه بازی تفنگی",
+                desc: "یه پروژه بازی تیراندازی/تفنگی که به عنوان نمونه‌کار در حال ساخت و تست بخش‌های مختلفشم."
+            },
+            'telegram': {
+                title: "📚 کانال دانستنی تلگرام",
+                desc: "کانال تلگرامی که درباره مطالب علمی و دانستنی ساختم و تا ۴۰۰ عضو فعال رشد کرد و تجربه عالی توی مدیریت کانال به من داد."
+            }
         };
-        function openModal(id) { document.getElementById('mTitle').innerText = pData[id].t; document.getElementById('mDesc').innerText = pData[id].d; document.getElementById('myModal').classList.add('active'); }
+
+        function openModal(id) {
+            document.getElementById('mTitle').innerText = pData[id].title;
+            document.getElementById('mDesc').innerText = pData[id].desc;
+            document.getElementById('myModal').classList.add('active');
+        }
         function closeMBtn() { document.getElementById('myModal').classList.remove('active'); }
         function closeM(e) { if(e.target.classList.contains('modal-overlay')) closeMBtn(); }
     </script>
