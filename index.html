@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آرتام حمیدی | سایت شخصی و مرکز اخبار</title>
     <style>
-        /* ===== فونت حرفه‌ای وزیرمتن ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+        /* ===== فونت وزیرمتن ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ===== متغیرهای پالت رنگی (تم پیش‌فرض تاریک لوکس) ===== */
+        /* ===== تم‌ها ===== */
         :root {
             --bg-main: #0f172a;
             --bg-card: #1e293b;
@@ -25,11 +21,10 @@
             --primary-hover: #7c3aed;
             --accent: #10b981;
             --accent-glow: rgba(16, 185, 129, 0.2);
-            --border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
             --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
         }
 
-        /* تم روشن */
         body.theme-light {
             --bg-main: #f8fafc;
             --bg-card: #ffffff;
@@ -44,7 +39,6 @@
             --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
         }
 
-        /* تم بنفش اختصاصی */
         body.theme-purple {
             --bg-main: #170f2e;
             --bg-card: #2a1b54;
@@ -59,7 +53,6 @@
             --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
         }
 
-        /* ===== استایل‌های پایه ===== */
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--bg-main);
@@ -70,18 +63,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* اسکرول‌بار اختصاصی */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-main); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* ===== پنل شناور تغییر تم ===== */
+        /* ===== سوئیچر تم ===== */
         .theme-switcher {
             position: fixed;
             bottom: 25px;
@@ -112,13 +100,12 @@
         .btn-light { background: #f8fafc; border-color: #ccc !important; }
         .btn-purple { background: #2a1b54; }
 
-        /* ===== هدر سایت ===== */
+        /* ===== هدر ===== */
         header {
             padding: 75px 20px 45px;
             text-align: center;
             border-bottom: 1px solid var(--border);
             background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
-            position: relative;
         }
 
         header h1 {
@@ -151,10 +138,9 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-muted);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* ===== ناوبری (منو) ===== */
+        /* ===== ناوبری ===== */
         nav {
             display: flex;
             justify-content: center;
@@ -182,18 +168,14 @@
             transition: all 0.3s ease;
         }
 
-        nav button:hover {
-            color: var(--text-main);
-            background: var(--bg-card);
-        }
-
+        nav button:hover { color: var(--text-main); background: var(--bg-card); }
         nav button.active {
             background: var(--primary);
             color: #fff;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35);
         }
 
-        /* ===== ساختار صفحات ===== */
+        /* ===== صفحات ===== */
         .page-content {
             display: none;
             max-width: 950px;
@@ -246,7 +228,6 @@
         }
 
         .card.interactive { cursor: pointer; }
-        
         .card.interactive:hover {
             transform: translateY(-6px);
             background: var(--bg-hover);
@@ -257,7 +238,7 @@
         .card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
 
-        /* زبان‌های برنامه‌نویسی */
+        /* زبان‌ها */
         .lang-list { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; }
         .lang-item {
             background: var(--bg-card);
@@ -272,7 +253,7 @@
         .lang-item:hover { border-color: var(--accent); transform: translateY(-2px); }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
 
-        /* لینک‌های ارتباطی */
+        /* لینک‌ها */
         .link-card {
             display: flex;
             align-items: center;
@@ -294,7 +275,7 @@
         .link-card .l-info h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
         .link-card .l-info p { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ===== بخش اخبار ===== */
+        /* ===== اخبار ===== */
         .news-item {
             background: var(--bg-card);
             border-radius: 18px;
@@ -333,12 +314,11 @@
 
         .btn-download:hover { opacity: 0.92; transform: translateY(-2px); }
 
-        /* مدیا (عکس و ویدیو) */
         .news-media-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 14px; margin-top: 18px; cursor: zoom-in; transition: 0.3s; border: 1px solid var(--border); }
         .news-media-img:hover { opacity: 0.9; }
         .news-media-vid { width: 100%; max-height: 500px; border-radius: 14px; margin-top: 18px; outline: none; border: 1px solid var(--border); background: #000; }
 
-        /* ===== پنل ادمین ===== */
+        /* ===== ادمین ===== */
         .admin-box {
             margin-top: 50px;
             text-align: center;
@@ -415,7 +395,7 @@
 
         .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
-        /* پاپ‌آپ متنی */
+        /* پاپ‌آپ */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -449,7 +429,7 @@
         .close-btn { position: absolute; top: 16px; left: 22px; font-size: 1.5rem; color: var(--text-muted); background: none; border: none; cursor: pointer; }
         .modal-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
 
-        /* نمایش تصویر تمام صفحه (لایت باکس) */
+        /* لایت باکس عکس */
         .img-viewer-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -470,7 +450,7 @@
 </head>
 <body>
 
-    <!-- دکمه‌های تم -->
+    <!-- تم سوئیچر -->
     <div class="theme-switcher">
         <div class="theme-btn btn-dark active" onclick="setTheme('dark')" title="تم تاریک"></div>
         <div class="theme-btn btn-light" onclick="setTheme('light')" title="تم روشن"></div>
@@ -489,7 +469,7 @@
         </div>
     </header>
 
-    <!-- منوی ناوبری -->
+    <!-- منو -->
     <nav>
         <button id="tab-home" class="active" onclick="showTab('home')">درباره و پروژه‌ها</button>
         <button id="tab-news" onclick="showTab('news')">اخبار و رسانه</button>
@@ -670,7 +650,7 @@
     <div id="page-news" class="page-content">
         <section>
             <h2 class="section-title title-green">اخبار، تصاویر و ویدیوها</h2>
-            <div id="newsList">درحال بارگذاری اخبار...</div>
+            <div id="newsList">درحال بارگذاری اخبار سراسری...</div>
 
             <div class="admin-box">
                 <button onclick="checkAdmin()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; text-decoration:underline;">🔒 ورود به پنل انتشار خبر (آرتام)</button>
@@ -694,7 +674,7 @@
                         <input type="text" id="nApkUrl" placeholder="لینک یا نام فایل APK (مثلاً: app-debug.apk)">
                     </div>
                     
-                    <button class="btn-submit" id="btnPublish" onclick="postNews()">🚀 انتشار در سایت</button>
+                    <button class="btn-submit" id="btnPublish" onclick="postNews()">🚀 انتشار جهانی خبر</button>
                 </div>
             </div>
         </section>
@@ -709,20 +689,24 @@
         </div>
     </div>
 
-    <!-- نمایش تصویر تمام صفحه -->
+    <!-- لایت باکس -->
     <div class="img-viewer-overlay" id="imgViewer" onclick="closeImg()">
         <img id="fullImg" src="" alt="Full Image">
     </div>
 
     <footer>طراحی و توسعه توسط آرتام حمیدی | ۲۰۲۵</footer>
 
-    <!-- ادامه دارد... (بخش دوم در پیام بعدی قرار می‌گیرد) -->
-
-    <!-- ===== اسکریپت‌ها ===== -->
+    <!-- ادامه دارد... (کدهای جاوااسکریپت در پیام بعدی قرار می‌گیرند) -->    <!-- ===== کدهای جاوااسکریپت کامل ===== -->
     <script>
-        // آدرس دیتابیس ابری سرور مرکزی برای همگام‌سازی جهانی اخبار
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_news_global_v300";
-        const PROXY = "https://api.codetabs.com/v1/proxy?quest=";
+        // آدرس سرور اصلی دیتابیس ابری
+        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_news_multi_v500";
+        
+        // لیست پروکسی‌های پشتیبان و ضد فیلتر برای ایران (Multi-Proxy Fallback)
+        const PROXIES = [
+            "https://api.codetabs.com/v1/proxy?quest=",
+            "https://api.allorigins.win/raw?url=",
+            "https://corsproxy.io/?"
+        ];
 
         // --- 📅 محاسبه دقیق تاریخ شمسی با اعداد فارسی ---
         function getShamsiDate() {
@@ -740,49 +724,43 @@
             }
         }
 
-        // --- 🎨 سیستم مدیریت و ذخیره تم‌ها ---
+        // --- 🎨 سیستم مدیریت تم‌های ۳ گانه ---
         function setTheme(themeName) {
             localStorage.setItem('artam_theme', themeName);
             document.body.className = '';
-            if(themeName !== 'dark') {
-                document.body.classList.add('theme-' + themeName);
-            }
+            if(themeName !== 'dark') document.body.classList.add('theme-' + themeName);
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.querySelector('.btn-' + themeName);
             if(activeBtn) activeBtn.classList.add('active');
         }
 
-        // اجرا به محض لود شدن کامل صفحه
         window.onload = function() {
             setTheme(localStorage.getItem('artam_theme') || 'dark');
             loadNews();
         };
 
-        // --- 🚀 سیستم ناوبری و سوئیچ بین تب‌ها ---
-        function showTab(tabId) {
+        // --- 🚀 سیستم سوئیچ بین صفحات ---
+        function showTab(t) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
-            document.getElementById('page-' + tabId).classList.add('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('page-' + t).classList.add('active');
+            document.getElementById('tab-' + t).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(t === 'news') loadNews();
         }
 
-        // تنظیم سریع نام فایل APK
         function setApkQuick(fileName) {
             document.getElementById('nApkUrl').value = fileName;
         }
 
-        // --- 📷 🎥 سیستم آپلود فایل‌های رسانه‌ای (عکس و ویدیو) ---
+        // --- 📷 🎥 سیستم ایمن آپلود رسانه ---
         async function uploadFileToCatbox(file) {
             let formData = new FormData();
             formData.append('reqtype', 'fileupload');
             formData.append('fileToUpload', file);
             let response = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: formData });
-            if (response.ok) {
-                return await response.text();
-            } else {
-                throw new Error("آپلود نا‌موفق بود.");
-            }
+            if (response.ok) return await response.text();
+            else throw new Error("آپلود ناموفق بود.");
         }
 
         function readFileAsDataURL(file) {
@@ -794,7 +772,28 @@
             });
         }
 
-        // --- 🔒 ورود ادمین و انتشار خبر جدید ---
+        // --- 🌐 تابع هوشمند دریافت و ارسال از طریق پروکسی‌های چندگانه ---
+        async function fetchWithFallback(url, options = {}) {
+            // اول تلاش مستقیم
+            try {
+                let directRes = await fetch(url, options);
+                if (directRes.ok) return directRes;
+            } catch(e) {}
+
+            // در صورت خطا، امتحان کردن پروکسی‌ها به ترتیب
+            for (let proxy of PROXIES) {
+                try {
+                    let targetUrl = proxy + encodeURIComponent(url);
+                    let res = await fetch(targetUrl, options);
+                    if (res.ok) return res;
+                } catch (e) {
+                    continue;
+                }
+            }
+            throw new Error("ارتباط با سرور برقرار نشد.");
+        }
+
+        // --- 🔒 مدیریت و انتشار خبر جهانی ---
         function checkAdmin() {
             if(prompt("رمز عبور مدیریت:") === "123123آرتام آر آر آر آرت") {
                 document.getElementById('adminForm').style.display = 'block';
@@ -815,12 +814,12 @@
             if(!title || !text) return alert("لطفاً عنوان و متن خبر را وارد کنید.");
 
             btn.disabled = true;
-            btn.innerText = "⏳ در حال پردازش و انتشار خبر...";
+            btn.innerText = "⏳ در حال آپلود و انتشار جهانی...";
 
             let imgUrl = "";
             let vidUrl = "";
 
-            // ۱. پردازش ایمن عکس
+            // ۱. پردازش عکس
             if(imgInput && imgInput.files && imgInput.files[0]) {
                 try {
                     imgUrl = await uploadFileToCatbox(imgInput.files[0]);
@@ -833,12 +832,12 @@
                 }
             }
 
-            // ۲. پردازش ایمن ویدیو
+            // ۲. پردازش ویدیو
             if(vidInput && vidInput.files && vidInput.files[0]) {
                 try {
                     vidUrl = await uploadFileToCatbox(vidInput.files[0]);
                 } catch(e) {
-                    alert("⚠️ ویدیو قابل آپلود نبود، خبر بدون ویدیو قرار می‌گیرد.");
+                    alert("⚠️ آپلود ویدیو موفقیت‌آمیز نبود، خبر بدون ویدیو قرار می‌گیرد.");
                 }
             }
 
@@ -852,65 +851,59 @@
                 date: getShamsiDate()
             };
 
-            // ۳. ذخیره محلی در مرورگر
-            try {
-                let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
-                if(!Array.isArray(localNews)) localNews = [];
-                localNews.unshift(newPost);
-                localStorage.setItem('artam_news_v200', JSON.stringify(localNews));
-            } catch(e) {
-                try {
-                    let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
-                    newPost.imgUrl = "";
-                    localNews.unshift(newPost);
-                    localStorage.setItem('artam_news_v200', JSON.stringify(localNews));
-                } catch(err) {}
-            }
+            // ۳. ذخیره محلی
+            let localNews = JSON.parse(localStorage.getItem('artam_multi_news') || '[]');
+            if(!Array.isArray(localNews)) localNews = [];
+            localNews.unshift(newPost);
+            localStorage.setItem('artam_multi_news', JSON.stringify(localNews));
 
-            // ۴. ارسال همگام‌سازی ابری
+            // ۴. ذخیره در سرور ابری برای همه کاربران دنیا
             try {
-                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
+                let res = await fetchWithFallback(DB_URL);
                 let cloudNews = res.ok ? await res.json() : [];
                 if(!Array.isArray(cloudNews)) cloudNews = [];
                 cloudNews.unshift(newPost);
-                await fetch(PROXY + encodeURIComponent(DB_URL), { 
-                    method: 'POST', 
-                    body: JSON.stringify(cloudNews) 
+                
+                await fetchWithFallback(DB_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(cloudNews)
                 });
-            } catch(err) {
-                console.log("ارسال ابری انجام نشد، پیام به صورت محلی ذخیره گردید.");
-            }
 
-            alert("✅ خبر با موفقیت منتشر شد!");
-            location.reload();
+                alert("✅ خبر با موفقیت منتشر شد و برای همه کاربران دنیا قابل مشاهده است!");
+                location.reload();
+            } catch(err) {
+                alert("⚠️ خبر ثبت شد اما به دلیل قطع بودن ارتباط با سرور ابری، ممکنه فقط روی سیستم شما نمایش داده بشه. لطفا فیلترشکن بگذارید و دوباره امتحان کنید.");
+                location.reload();
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "🚀 انتشار در سایت";
+            }
         }
 
-        // --- 📰 بارگذاری و نمایش اخبار ---
+        // --- 📰 بارگذاری اخبار از سرور جهانی ---
         async function loadNews() {
             let container = document.getElementById('newsList');
             let allNews = [];
 
-            // ۱. بارگذاری اولیه از حافظه محلی
-            let localNews = JSON.parse(localStorage.getItem('artam_news_v200') || '[]');
+            // خواندن اولیه از حافظه محلی
+            let localNews = JSON.parse(localStorage.getItem('artam_multi_news') || '[]');
             if(Array.isArray(localNews)) allNews = localNews;
 
-            // ۲. تلاش برای دریافت جدیدترین اخبار از سرور ابری
+            // دریافت اخبار از سرور ابری برای همگام‌سازی جهانی
             try {
-                let res = await fetch(PROXY + encodeURIComponent(DB_URL));
+                let res = await fetchWithFallback(DB_URL);
                 if(res.ok) {
                     let cloudNews = await res.json();
                     if(Array.isArray(cloudNews) && cloudNews.length > 0) {
                         allNews = cloudNews;
                     }
                 }
-            } catch(e) {
-                // در صورت قطع بودن اینترنت ابری بدون نمایش ارور اخبار محلی نشان داده می‌شوند
-            }
+            } catch(e) {}
 
             if(allNews.length === 0) {
                 let currentDate = getShamsiDate();
                 container.innerHTML = `
-                    <div class="news-card">
+                    <div class="news-item">
                         <div class="news-header">
                             <span class="n-title">🚀 شروع به کار رسمی سایت آرتام</span>
                             <span class="n-date">${currentDate}</span>
@@ -946,7 +939,7 @@
             });
         }
 
-        // --- 🔍 نمایش تصویر تمام صفحه (لایت‌باکس) ---
+        // --- 🔍 بزرگنمایی تصویر (لایت‌باکس) ---
         function openImg(src) {
             document.getElementById('fullImg').src = src;
             document.getElementById('imgViewer').classList.add('active');
@@ -955,7 +948,7 @@
             document.getElementById('imgViewer').classList.remove('active');
         }
 
-        // --- 💬 پاپ‌آپ متنی پروژه‌ها با جزییات کامل ---
+        // --- 💬 پاپ‌آپ توضیحات پروژه‌ها ---
         const pData = {
             'jahan': {
                 title: "🌍 جهان ماجراجویی (پروژه اصلی)",
