@@ -3,504 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آرتام حمیدی | دیتاسنتر جهان ماجراجویی</title>
+    <title>آرتام حمیدی | مرکز خبر و آپدیت</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-base: #09090b;
-            --bg-card: #18181b;
+            --bg: #050508;
+            --card: #111118;
             --primary: #8b5cf6;
-            --primary-glow: rgba(139, 92, 246, 0.4);
             --accent: #06b6d4;
-            --text-main: #f8fafc;
-            --text-muted: #a1a1aa;
-            --border: rgba(255, 255, 255, 0.08);
+            --text: #e2e8f0;
+            --muted: #71717a;
+            --border: rgba(255, 255, 255, 0.06);
         }
 
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-            background-image: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.1), transparent 50%);
+            background-image: radial-gradient(circle at 50% -20%, #1e1b4b, transparent 50%);
         }
 
-        /* اسکرول‌بار شیک */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        /* ===== هدر سایت ===== */
+        /* هدر */
         header {
             padding: 60px 20px;
             text-align: center;
             border-bottom: 1px solid var(--border);
-            background: rgba(24, 24, 27, 0.5);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: rgba(5, 5, 8, 0.6);
+            backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(to left, #fff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
+        header h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(to bottom, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: var(--accent); font-weight: bold; font-size: 0.9rem; margin-top: 5px; letter-spacing: 1px; }
 
-        header .subtitle {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
+        main { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
-        /* ===== کانتینر اصلی اخبار ===== */
-        main {
-            max-width: 800px;
-            margin: 40px auto 100px;
-            padding: 0 20px;
-        }
-
-        /* استاتوس سرور */
-        .server-status-box {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .status-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: #eab308;
-            box-shadow: 0 0 10px #eab308;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-        /* ===== کارت‌های اخبار ===== */
+        /* کارت خبر */
         .news-card {
-            background: var(--bg-card);
+            background: var(--card);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 40px;
+            padding: 35px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: 0.3s;
         }
+
+        .news-card:hover { border-color: var(--primary); box-shadow: 0 10px 40px rgba(139, 92, 246, 0.1); }
+
+        .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .news-title { font-size: 1.4rem; font-weight: 800; color: #fff; }
+        .news-date { color: var(--accent); font-size: 0.85rem; font-weight: bold; background: rgba(6, 182, 212, 0.1); padding: 4px 12px; border-radius: 10px; }
+
+        .news-body { color: #a1a1aa; font-size: 1.05rem; white-space: pre-line; margin-bottom: 20px; }
+
+        /* مدیا */
+        .media-img { width: 100%; border-radius: 16px; margin-top: 15px; border: 1px solid var(--border); cursor: zoom-in; }
+        .media-vid { width: 100%; border-radius: 16px; margin-top: 15px; background: #000; outline: none; }
+
+        .btn-apk {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #fff; color: #000; width: 100%; padding: 15px;
+            border-radius: 14px; font-weight: 900; font-size: 1.1rem;
+            margin-top: 25px; text-decoration: none; transition: 0.3s;
+        }
+        .btn-apk:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
+
+        /* پنل تولید کد برای ادمین */
+        .admin-trigger { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary); border: none; border-radius: 50%; cursor: pointer; font-size: 1.5rem; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .admin-panel { display: none; background: #18181b; border: 1px solid var(--primary); padding: 30px; border-radius: 24px; margin-bottom: 40px; }
+        .admin-panel input, .admin-panel textarea { width: 100%; background: #09090b; border: 1px solid var(--border); color: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px; font-family: inherit; }
         
-        .news-card:hover {
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 10px 40px var(--primary-glow);
-        }
+        .code-output { background: #000; color: #00e676; padding: 20px; border-radius: 12px; font-family: monospace; font-size: 0.85rem; margin-top: 20px; white-space: pre-wrap; display: none; border: 1px solid #333; position: relative; }
+        .copy-notice { color: #ffaa00; font-size: 0.8rem; margin-top: 10px; display: none; }
 
-        .news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .news-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .news-date {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--accent);
-            padding: 4px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .news-text {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.9;
-            white-space: pre-line;
-            margin-bottom: 20px;
-        }
-
-        /* رسانه‌ها */
-        .media-img {
-            width: 100%;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            margin-top: 15px;
-            cursor: zoom-in;
-        }
-
-        .media-vid {
-            width: 100%;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            margin-top: 15px;
-            background: #000;
-        }
-
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--text-main);
-            color: var(--bg-base);
-            width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            margin-top: 25px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn-download:hover {
-            background: var(--primary);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        /* ===== دکمه و پنل ادمین ===== */
-        .admin-trigger {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            width: 50px; height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            transition: 0.3s;
-        }
-
-        .admin-trigger:hover { background: var(--primary); color: #fff; transform: scale(1.1); box-shadow: 0 0 20px var(--primary-glow); }
-
-        .admin-panel {
-            display: none;
-            background: var(--bg-card);
-            border: 1px solid var(--primary);
-            padding: 30px;
-            border-radius: 24px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .admin-panel input[type="text"], .admin-panel textarea {
-            width: 100%;
-            background: var(--bg-base);
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .admin-panel input:focus, .admin-panel textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .file-group {
-            background: rgba(255,255,255,0.02);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px dashed var(--border);
-            margin-bottom: 15px;
-        }
-        .file-group label { display: block; color: var(--accent); font-weight: bold; margin-bottom: 8px; font-size: 0.9rem; }
-        .file-group input[type="file"] { width: 100%; color: var(--text-muted); }
-
-        .btn-publish {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-publish:disabled { background: #333; color: #888; cursor: wait; }
-
-        /* لایت باکس تصویر */
-        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; cursor: zoom-out; }
+        /* لایت باکس */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; }
         .lightbox.active { display: flex; }
-        .lightbox img { max-width: 95%; max-height: 95%; border-radius: 12px; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
 
+        footer { text-align: center; padding: 50px; color: var(--muted); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <!-- هدر -->
     <header>
         <h1>آرتام حمیدی</h1>
-        <div class="subtitle">دیتاسنتر رسمی جهان ماجراجویی</div>
+        <p>CENTER OF THE ADVENTURE WORLD</p>
     </header>
 
-    <!-- کانتینر اصلی -->
     <main>
-        <!-- وضعیت سرور -->
-        <div class="server-status-box">
-            <div class="status-badge">
-                <div class="status-dot" id="dotStatus"></div>
-                <span id="txtStatus">در حال برقراری ارتباط با ۳۰ سرور جهانی...</span>
-            </div>
-        </div>
-
-        <!-- پنل ادمین (مخفی تا زمان کلیک) -->
+        <!-- پنل ادمین (تولیدکننده کد) -->
         <div class="admin-panel" id="adminPanel">
-            <h2 style="color:var(--primary); margin-bottom:20px; font-size:1.4rem;">انتشار آپدیت جدید</h2>
-            <input type="text" id="pTitle" placeholder="عنوان آپدیت (مثلا: نسخه ۱.۰ منتشر شد)">
-            <textarea id="pText" rows="5" placeholder="جزئیات و تغییرات این نسخه..."></textarea>
+            <h2 style="margin-bottom:20px; color:var(--primary);">ساخت خبر جدید (دستیار ادمین)</h2>
+            <input type="text" id="pTitle" placeholder="عنوان خبر">
+            <textarea id="pText" rows="4" placeholder="متن کامل خبر..."></textarea>
+            <input type="text" id="pImg" placeholder="لینک عکس (پیکوفایل یا گیت‌هاب)">
+            <input type="text" id="pVid" placeholder="لینک ویدیو (پیکوفایل یا گیت‌هاب)">
+            <input type="text" id="pApk" placeholder="لینک APK (پیش‌فرض: app-debug.apk)" value="app-debug.apk">
             
-            <div class="file-group">
-                <label>📷 ضمیمه تصویر (از گالری):</label>
-                <input type="file" id="pImg" accept="image/*">
-            </div>
-            <div class="file-input">
-                <label style="color:var(--accent); font-weight:bold; font-size:0.9rem;">🎥 ضمیمه ویدیو (از گالری):</label>
-                <input type="file" id="pVid" accept="video/*" style="width:100%; color:var(--text-muted); margin-bottom:15px; margin-top:5px;">
-            </div>
-
-            <div style="display:flex; gap:10px; margin-bottom:15px;">
-                <input type="text" id="pApk" placeholder="لینک APK" style="margin-bottom:0;">
-                <button onclick="document.getElementById('pApk').value='app-debug.apk'" style="background:var(--border); color:#fff; border:none; padding:0 20px; border-radius:12px; cursor:pointer; font-weight:bold; white-space:nowrap;">⚡ app-debug.apk</button>
-            </div>
-
-            <button class="btn-publish" id="btnPublish" onclick="publishNews()">🚀 انتشار در شبکه جهانی</button>
+            <button class="btn-apk" style="background:var(--primary); color:#fff;" onclick="generateCode()">✨ تولید کد برای گیت‌هاب</button>
+            
+            <div class="code-output" id="codeOutput"></div>
+            <p class="copy-notice" id="copyNotice">⚠️ این کد را کپی کنید و در فایل news.json گیت‌هاب جایگزین کل محتویات قبلی کنید.</p>
         </div>
 
-        <!-- لیست اخبار -->
-        <div id="newsFeed">
-            <!-- اخبار اینجا لود می‌شوند -->
-        </div>
+        <!-- فید اخبار -->
+        <div id="newsFeed">در حال لود اخبار از سرور گیت‌هاب...</div>
     </main>
 
-    <!-- دکمه ورود ادمین (شناور) -->
-    <button class="admin-trigger" onclick="openAdmin()" title="پنل مدیریت">🔒</button>
+    <button class="admin-trigger" onclick="toggleAdmin()">🔒</button>
 
-    <!-- لایت باکس عکس -->
     <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
         <img id="lbImg" src="">
     </div>
 
-    <!-- ============================================== -->
-    <!-- ================== کدهای جاوااسکریپت =========== -->
-    <!-- ============================================== -->
+    <footer>DEVELOPED BY ARTAM HAMIDI | 2025</footer>
+
     <script>
-        // دیتابیس اختصاصی (جدید برای این قالب)
-        const DB_URL = "https://kvdb.io/2Udt8vG1uA4g5sM8E3aJ7W/artam_core_feed_v1";
+        // آدرس مستقیم فایل در گیت‌هاب خودت (نام کاربری را چک کن)
+        const JSON_FILE_URL = "news.json";
 
-        // 🔥 موتور ۳۰ لایه پروکسی برای تضمین ۱۰۰٪ اتصال 🔥
-        const PROXY_SWARM = [
-            // پروکسی‌های مستقیم API
-            (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-            (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-            (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-            (url) => `https://thingproxy.freeboard.io/fetch/${url}`,
-            // روتینگ‌های فرعی و Cache-Busting برای فریب فیلترینگ
-            (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}&bypass=1`,
-            (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}&t=${Date.now()}`,
-            (url) => `https://corsproxy.io/?${encodeURIComponent(url)}&nch=1`,
-            (url) => `https://thingproxy.freeboard.io/fetch/${url}?try=2`,
-            (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}&req=3`,
-            (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}&v=new`,
-            // تلاش مستقیم به عنوان آخرین راه‌ها
-            (url) => url,
-            (url) => `${url}?t=${Date.now()}`
-        ]; // این موتور به قدری تکرار میشه تا یکی قطعا جواب بده
-
-        // --- 📅 تاریخ دقیق شمسی ---
         function getShamsi() {
-            try {
-                const f = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {year:'numeric', month:'2-digit', day:'2-digit'});
-                return f.format(new Date());
-            } catch(e) { return new Date().toLocaleDateString('fa-IR'); }
+            return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {year:'numeric', month:'2-digit', day:'2-digit'}).format(new Date());
         }
 
-        // --- 📡 سیستم ارتباطی شبکه (Swarm Fetch) ---
-        // این سیستم حداکثر ۶ ثانیه به هر سرور فرصت میده، اگه جواب نداد سریع میره بعدی!
-        async function fetchNet(targetUrl, options = {}, updateStatus = null) {
-            for(let i = 0; i < PROXIES_SWARM.length; i++) {
-                if(updateStatus) updateStatus(`در حال تست تونل ${i+1}...`);
-                try {
-                    const proxyUrl = PROXY_SWARM[i](targetUrl);
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6 ثانیه مهلت
-
-                    const res = await fetch(proxyUrl, { ...options, signal: controller.signal });
-                    clearTimeout(timeoutId);
-                    
-                    if(res.ok) return res;
-                } catch(e) {
-                    continue; // پرش به پروکسی بعدی
-                }
-            }
-            throw new Error("شبکه مسدود است.");
-        }
-
-        // بررسی وضعیت سرور در هدر سایت
-        async function checkConnection() {
-            const dot = document.getElementById('dotStatus');
-            const txt = document.getElementById('txtStatus');
-            try {
-                await fetchNet(DB_URL);
-                dot.style.background = '#10b981';
-                dot.style.boxShadow = '0 0 10px #10b981';
-                txt.innerText = 'متصل به سرور جهانی';
-            } catch(e) {
-                dot.style.background = '#ef4444';
-                dot.style.boxShadow = '0 0 10px #ef4444';
-                txt.innerText = 'آفلاین (دسترسی فقط محلی)';
-            }
-        }
-
-        window.onload = () => {
-            loadFeed();
-            checkConnection();
-        };
-
-        // --- 🔐 ورود ادمین ---
-        function openAdmin() {
-            if(document.getElementById('adminPanel').style.display === 'block') {
-                document.getElementById('adminPanel').style.display = 'none';
-                return;
-            }
-            if(prompt("کد دسترسی فرماندهی:") === "123123آرتام آر آر آر آرت") {
+        function toggleAdmin() {
+            if(prompt("کد ادمین:") === "123123آرتام آر آر آر آرت") {
                 document.getElementById('adminPanel').style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else { alert("دسترسی رد شد."); }
-        }
-
-        // --- ☁️ آپلود فایل مدیا ---
-        async function uploadMedia(file) {
-            let fd = new FormData(); fd.append('reqtype', 'fileupload'); fd.append('fileToUpload', file);
-            let res = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: fd });
-            return res.ok ? await res.text() : "";
-        }
-
-        // --- 🚀 انتشار خبر ---
-        async function publishNews() {
-            let title = document.getElementById('pTitle').value.trim();
-            let text = document.getElementById('pText').value.trim();
-            let apk = document.getElementById('pApk').value.trim();
-            if(!title || !text) return alert("ورود عنوان و توضیحات الزامی است.");
-
-            let btn = document.getElementById('btnPublish');
-            btn.disabled = true;
-
-            let imgUrl = "", vidUrl = "";
-            let imgF = document.getElementById('pImg').files[0];
-            let vidF = document.getElementById('pVid').files[0];
-
-            try {
-                if(imgF) { btn.innerText = "⏳ در حال آپلود تصویر..."; imgUrl = await uploadMedia(imgF); }
-                if(vidF) { btn.innerText = "⏳ در حال آپلود ویدیو..."; vidUrl = await uploadMedia(vidF); }
-
-                let postData = { id: Date.now(), title, text, apk, imgUrl, vidUrl, date: getShamsi() };
-
-                // ذخیره در مرورگر به عنوان بکاپ
-                let localDb = JSON.parse(localStorage.getItem('artam_core_db') || '[]');
-                localDb.unshift(postData);
-                localStorage.setItem('artam_core_db', JSON.stringify(localDb));
-
-                // هجوم به سرورها برای ثبت جهانی
-                btn.innerText = "🚀 در حال انتشار جهانی (صبور باشید)...";
-                let getRes = await fetchNet(DB_URL);
-                let cloudDb = getRes.ok ? await getRes.json() : [];
-                if(!Array.isArray(cloudNews)) cloudDb = [];
-                cloudDb.unshift(postData);
-
-                await fetchNet(DB_URL, { method: 'POST', body: JSON.stringify(cloudDb) }, (msg) => { btn.innerText = msg; });
-
-                alert("✅ آپدیت با موفقیت در سراسر جهان منتشر شد!");
-                location.reload();
-            } catch(e) {
-                alert("⚠️ هشدار اینترنت: خبر در گوشی شما ثبت شد اما به دلیل فیلترینگ شدید، ارسال جهانی 실패 شد. با VPN امتحان کنید.");
-                location.reload();
             }
         }
 
-        // --- 📰 لود کردن فید اخبار ---
+        // --- بارگذاری اخبار (فوق‌العاده سریع و بدون پروکسی) ---
         async function loadFeed() {
-            let container = document.getElementById('newsFeed');
-            let feed = JSON.parse(localStorage.getItem('artam_core_db') || '[]');
-
+            const container = document.getElementById('newsFeed');
             try {
-                let res = await fetchNet(DB_URL);
-                if(res.ok) {
-                    let cloudData = await res.json();
-                    if(Array.isArray(cloudData) && cloudData.length > 0) feed = cloudData;
+                // اضافه کردن یک عدد رندوم به ته آدرس برای جلوگیری از لود شدن نسخه قدیمی (Cache)
+                const response = await fetch(JSON_FILE_URL + "?v=" + Date.now());
+                const feed = await response.json();
+
+                if (feed.length === 0) {
+                    container.innerHTML = `<div class="news-card"><h3 class="news-title">🚀 خوش آمدید</h3><p class="news-body">هنوز خبری منتشر نشده است.</p></div>`;
+                    return;
                 }
+
+                container.innerHTML = "";
+                feed.forEach(item => {
+                    let imgHTML = item.img ? `<img src="${item.img}" class="media-img" onclick="openLightbox(this.src)">` : '';
+                    let vidHTML = item.vid ? `<video class="media-vid" controls preload="metadata"><source src="${item.vid}"></video>` : '';
+                    let apkHTML = item.apk ? `<a href="${item.apk}" class="btn-apk" download>📥 دانلود فایل APK بازی</a>` : '';
+
+                    container.innerHTML += `
+                        <div class="news-card">
+                            <div class="news-header">
+                                <h3 class="news-title">${item.title}</h3>
+                                <span class="news-date">${item.date}</span>
+                            </div>
+                            <div class="news-body">${item.text}</div>
+                            ${imgHTML}
+                            ${vidHTML}
+                            ${apkHTML}
+                        </div>`;
+                });
+            } catch (e) {
+                container.innerHTML = `<p style="color:red; text-align:center;">خطا در خواندن فایل news.json. مطمئن شوید این فایل را در گیت‌هاب ساخته‌اید.</p>`;
+            }
+        }
+
+        // --- تولید کد برای آپدیت دستی ---
+        async function generateCode() {
+            const title = document.getElementById('pTitle').value;
+            const text = document.getElementById('pText').value;
+            const img = document.getElementById('pImg').value;
+            const vid = document.getElementById('pVid').value;
+            const apk = document.getElementById('pApk').value;
+
+            if(!title || !text) return alert("عنوان و متن الزامی است!");
+
+            // گرفتن لیست فعلی برای اضافه کردن به ابتدای آن
+            let currentFeed = [];
+            try {
+                const res = await fetch(JSON_FILE_URL + "?v=" + Date.now());
+                currentFeed = await res.json();
             } catch(e) {}
 
-            if(feed.length === 0) {
-                container.innerHTML = `
-                    <div class="news-card">
-                        <div class="news-header">
-                            <h3 class="news-title">🚀 هسته مرکزی فعال شد</h3>
-                            <span class="news-date">${getShamsi()}</span>
-                        </div>
-                        <p class="news-text">دیتاسنتر رسمی جهان ماجراجویی با موفقیت راه‌اندازی شد. منتظر اولین آپدیت‌ها باشید.</p>
-                    </div>`;
-                return;
-            }
+            const newPost = { title, text, img, vid, apk, date: getShamsi() };
+            currentFeed.unshift(newPost);
 
-            container.innerHTML = "";
-            feed.forEach(item => {
-                let imgHTML = item.imgUrl ? `<img src="${item.imgUrl}" class="media-img" onclick="document.getElementById('fullImg').src=this.src; document.getElementById('lightbox').classList.add('active');">` : '';
-                let vidHTML = item.vidUrl ? `<video class="media-vid" controls preload="metadata"><source src="${item.vidUrl}"></video>` : '';
-                let apkHTML = item.apk ? `<a href="${item.apk}" class="btn-download" download>📥 دانلود فایل نصبی (APK)</a>` : '';
-
-                container.innerHTML += `
-                    <div class="news-card">
-                        <div class="news-header">
-                            <h3 class="news-title">${item.title}</h3>
-                            <span class="news-date">${item.date}</span>
-                        </div>
-                        <div class="news-text">${item.text}</div>
-                        ${imgHTML}
-                        ${vidHTML}
-                        ${apkHTML}
-                    </div>`;
-            });
+            const output = document.getElementById('codeOutput');
+            output.innerText = JSON.stringify(currentFeed, null, 2);
+            output.style.display = 'block';
+            document.getElementById('copyNotice').style.display = 'block';
+            
+            alert("کد جدید تولید شد! آن را کپی کنید و در فایل news.json گیت‌هاب Paste کنید.");
         }
+
+        function openLightbox(s) { document.getElementById('lbImg').src = s; document.getElementById('lightbox').classList.add('active'); }
+        
+        window.onload = loadFeed;
     </script>
 </body>
 </html>
