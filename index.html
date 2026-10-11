@@ -85,6 +85,42 @@
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
 
+        /* معرفی بازی */
+        .game-hero {
+            background: linear-gradient(160deg, #170d33 0%, #0d0a1f 55%, #06121a 100%);
+            border: 1px solid rgba(91, 247, 196, 0.25);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
+        }
+        .game-hero::after {
+            content: "";
+            position: absolute; inset: -40% -10% auto auto;
+            width: 260px; height: 260px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 184, 0.35), transparent 65%);
+            pointer-events: none;
+        }
+        .game-badge {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            color: #04140f; background: #5bf7c4; padding: 3px 12px; border-radius: 999px;
+            margin-bottom: 14px;
+        }
+        .game-hero h2 { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; }
+        .game-hero p { color: #b6b3d6; font-size: 0.98rem; margin-bottom: 20px; }
+        .game-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .btn-play, .btn-dl {
+            flex: 1 1 200px; text-align: center; text-decoration: none;
+            font-weight: 900; padding: 14px 18px; border-radius: 14px; transition: 0.25s;
+        }
+        .btn-play { background: linear-gradient(120deg, #5bf7c4, #38bdf8); color: #05201a; }
+        .btn-play:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(91, 247, 196, 0.3); }
+        .btn-dl { background: rgba(255, 255, 255, 0.08); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.16); }
+        .btn-dl:hover { border-color: var(--primary); color: #fff; transform: translateY(-2px); }
+        .game-shot { width: 100%; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(91, 247, 196, 0.2); }
+
         footer { text-align: center; padding: 50px; color: var(--muted); font-size: 0.8rem; }
     </style>
 </head>
@@ -110,6 +146,18 @@
             <div class="code-output" id="codeOutput"></div>
             <p class="copy-notice" id="copyNotice">⚠️ این کد را کپی کنید و در فایل news.json گیت‌هاب جایگزین کل محتویات قبلی کنید.</p>
         </div>
+
+        <!-- معرفی بازی -->
+        <section class="game-hero">
+            <span class="game-badge">نسخه‌ی جدید ✨</span>
+            <h2>دنیای ماجراجویی — گرافیک نئون</h2>
+            <p>گرافیک بازی از پایه بازسازی شد: آسمان شب با ستاره و شفق، درخشش و بلوم نئونی، پالت رنگی تازه برای هر فصل و ذرات نورانی. ۱۵۰ مرحله در ۶ فصل — همین‌جا در مرورگر یا با اپ اندروید.</p>
+            <div class="game-actions">
+                <a class="btn-play" href="game/index.html">▶️ همین‌جا بازی کن</a>
+                <a class="btn-dl" href="game/adventure-world-neon.apk" download>📥 دانلود APK اندروید</a>
+            </div>
+            <img class="game-shot" src="images/neon-preview.jpg" alt="نمایی از گرافیک نئون بازی" loading="lazy">
+        </section>
 
         <!-- فید اخبار -->
         <div id="newsFeed">در حال لود اخبار از سرور گیت‌هاب...</div>
