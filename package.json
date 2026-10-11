@@ -1,0 +1,22 @@
+{
+  "name": "artam-io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "سایت artam.io + بازی «دنیای ماجراجویی» (نسخه‌ی نئون)",
+  "scripts": {
+    "gfx": "python3 tools/apply-neon.py",
+    "test": "node tools/smoke-test.js",
+    "render": "node tools/render-frames.js",
+    "keys": "node tools/make-keystore.js",
+    "apk": "node tools/build-apk.js",
+    "verify": "python3 tools/verify-apk.py",
+    "build": "npm run gfx && npm test && npm run apk && npm run verify",
+    "test:classic": "node tools/compare-classic.js"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.16",
+    "apk_sign_ts": "^1.0.1",
+    "node-forge": "^1.3.1",
+    "@napi-rs/canvas": "^0.1.80"
+  }
+}
