@@ -1,0 +1,21 @@
+{
+  "name": "GamePort Showcase",
+  "short_name": "GamePort",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#6366f1",
+  "description": "نمایشگاه و نصب بازی جدید من",
+  "icons": [
+    {
+      "src": "vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "vite.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
